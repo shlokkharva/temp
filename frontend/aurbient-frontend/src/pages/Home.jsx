@@ -77,7 +77,7 @@ export default function Home() {
           </div>
 
           <div style={{
-            display: "inline-flex", gap: "2.5rem",
+            display: "inline-flex", gap: "2.5rem", flexWrap: "wrap", justifyContent: "center",
             padding: "1rem 1.5rem",
             background: "rgba(17,17,17,0.6)",
             backdropFilter: "blur(12px)",
@@ -102,7 +102,7 @@ export default function Home() {
       </HeroSection>
 
       {/* ══════════════════════════════════════════ CAPABILITIES */}
-      <section style={{ padding: "7rem 5rem", background: "var(--color-surface)" }}>
+      <section className="py-16 px-6 md:py-28 md:px-20" style={{ background: "var(--color-surface)" }}>
         <motion.div initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.8}}>
           <span style={{ color:TEAL, fontSize:"0.67rem", fontWeight:600, letterSpacing:"0.22em", textTransform:"uppercase" }}>// Capabilities</span>
           <h2 style={{ fontWeight: 600, fontSize:"clamp(2.4rem,4vw,3.8rem)", lineHeight:1.0, letterSpacing:"-1.5px", margin:"0.6rem 0 3rem", color:"var(--color-text)" }}>
@@ -137,24 +137,25 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════ STATS */}
-      <section style={{ padding:"7rem 5rem", background: BG }}>
+      <section className="py-16 px-6 md:py-28 md:px-20" style={{ background: BG }}>
         <span style={{ color:TEAL, fontSize:"0.67rem", fontWeight:600, letterSpacing:"0.22em", textTransform:"uppercase" }}>// Operational Metrics</span>
         {[["150+","Projects Delivered Across Global Technology Sectors"],["98%","Client Retention — Relationships Built to Last"],["40%","Average Operational Efficiency Improvement"],["12","Countries Where Our Systems Run"]].map(([val, label]) => (
           <motion.div
             key={val}
             initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.5}}
-            style={{ display:"flex", alignItems:"baseline", justifyContent:"space-between", borderBottom:`1px solid var(--color-border)`, padding:"2rem 0", gap:"2rem" }}
+            className="flex flex-col md:flex-row md:items-baseline justify-between py-8 gap-2 md:gap-8 border-b"
+            style={{ borderBottomColor: "var(--color-border)" }}
           >
             <span style={{ fontWeight: 600, fontSize:"clamp(3.5rem,7vw,6.5rem)", lineHeight:1, color:"var(--color-text)", letterSpacing:"-2px" }}>
               <AnimatedCounter value={val} />
             </span>
-            <span style={{ fontSize:"0.88rem", color:"var(--color-muted)", textAlign:"right", maxWidth:"350px", lineHeight:1.55, fontWeight:300 }}>{label}</span>
+            <span className="md:text-right" style={{ fontSize:"0.88rem", color:"var(--color-muted)", maxWidth:"350px", lineHeight:1.55, fontWeight:300 }}>{label}</span>
           </motion.div>
         ))}
       </section>
 
       {/* ══════════════════════════════════════════ CTA */}
-      <section style={{ padding:"7rem 5rem", background:"var(--color-surface)", display:"flex", flexDirection:"column", alignItems:"center", gap:"1.6rem", backgroundImage:`radial-gradient(ellipse 60% 50% at 50% 50%, rgba(80,70,200,0.05) 0%, transparent 70%)` }}>
+      <section className="py-16 px-6 md:py-28 md:px-20 flex flex-col items-center gap-6" style={{ background:"var(--color-surface)", backgroundImage:`radial-gradient(ellipse 60% 50% at 50% 50%, rgba(80,70,200,0.05) 0%, transparent 70%)` }}>
         <span style={{ color:TEAL, fontSize:"0.67rem", fontWeight:600, letterSpacing:"0.22em", textTransform:"uppercase", background:"rgba(80,70,200,0.06)", padding:"5px 18px", borderRadius:"999px", border:"1px solid rgba(80,70,200,0.18)" }}>
           Ready when you are
         </span>

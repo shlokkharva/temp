@@ -82,7 +82,8 @@ export default function HeroSection({ kicker, headline, subtext, children }) {
         `,
       }} />
 
-      <div style={{
+      <div className="px-6 md:px-20 pt-32 pb-12"
+        style={{
         position: "relative", zIndex: 10,
         flex: 1,
         display: "flex",
@@ -90,7 +91,6 @@ export default function HeroSection({ kicker, headline, subtext, children }) {
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
-        padding: "100px 5rem 2rem",
         maxWidth: "1200px",
         margin: "0 auto",
       }}>
