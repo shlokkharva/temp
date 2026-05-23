@@ -1,0 +1,1108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aurbient Technologies - AI insights, research and thought leadership from industry experts">
+    <title>AI Insights & Research | Aurbient Technologies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7D5BA6;
+            --secondary: #9D50BB;
+            --accent: #0097B2;
+            --dark: #1A1A2E;
+            --light: #F5F3F7;
+            --text-xl: 3.5rem;
+            --text-lg: 2.5rem;
+            --text-md: 1.5rem;
+            --text-base: 1.15rem;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --font-heading: 'Playfair Display', serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Header - Same as Landing Page */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.8rem 5%;
+            position: fixed;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            margin-top: -30px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        
+        header.scrolled {
+            padding: 1.2rem 5%;
+            box-shadow: 0 5px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo img {
+            height: 90px;
+            width: auto;
+            margin: auto;
+            margin-bottom: -15px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        nav a .nav-icon {
+            display: none;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+        
+        nav a.active::after,
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--dark);
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Gradient Text Utility */
+        .gradient-text {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Section Title Styling */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .section-title h2 {
+            font-family: var(--font-heading);
+            font-size: var(--text-lg);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: var(--text-base);
+        }
+        
+        /* Button Styles */
+        .btn {
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            border: none;
+        }
+        
+        .btn i {
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 6px 25px rgba(110, 72, 170, 0.35);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(110, 72, 170, 0.45);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(110, 72, 170, 0.05);
+            transform: translateY(-5px);
+        }
+        
+        /* CTA Container */
+        .cta-container {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Thought Leadership Specific Styles */
+        .insights-hero {
+            background: linear-gradient(135deg, rgba(125, 91, 166, 0.08) 0%, rgba(157, 80, 187, 0.08) 100%);
+            padding: 12rem 5% 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .insights-hero::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(110, 72, 170, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+            top: -400px;
+            right: -400px;
+            z-index: -1;
+            animation: pulse 15s infinite alternate;
+        }
+        
+        .insights-hero h1 {
+            font-family: var(--font-heading);
+            font-size: var(--text-xl);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .insights-hero p {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-size: var(--text-md);
+            color: #555;
+        }
+        
+        /* Content Categories */
+        .content-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        
+        .category-btn.active, 
+        .category-btn:hover {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        /* Articles Grid */
+        .articles-container {
+            padding: 4rem 5%;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .article-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(110, 72, 170, 0.3), rgba(0, 180, 216, 0.3));
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .article-card:hover .article-image::before {
+            opacity: 1;
+        }
+        
+        .article-content {
+            padding: 2rem;
+        }
+        
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .article-meta .category-tag {
+            background: rgba(110, 72, 170, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+        }
+        
+        .article-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .article-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .article-link:hover {
+            color: var(--secondary);
+        }
+        
+        .article-link i {
+            transition: var(--transition);
+        }
+        
+        .article-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Featured Research Section */
+        .featured-research {
+            background: linear-gradient(135deg, rgba(110, 72, 170, 0.05) 0%, rgba(157, 80, 187, 0.05) 100%);
+            padding: 6rem 5%;
+            margin: 4rem 0;
+        }
+        
+        .research-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .research-card {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .research-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        
+        .research-content p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .research-image {
+            height: 300px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+        }
+        
+        /* Newsletter CTA */
+        .newsletter-cta {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .newsletter-cta h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .newsletter-cta p {
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #eee;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .newsletter-submit {
+            padding: 1rem 1.8rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-submit:hover {
+            transform: translateX(5px);
+        }
+        
+        /* Footer - Same as Landing Page */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 6rem 5% 3rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-about p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        
+        .footer-links a i {
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-links a:hover i {
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #777;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(110, 72, 170, 0.3);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(110, 72, 170, 0.4);
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .research-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .research-image {
+                height: 250px;
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            :root {
+                --text-xl: 2.8rem;
+                --text-lg: 2.2rem;
+                --text-md: 1.3rem;
+            }
+            
+            .insights-hero {
+                padding: 10rem 5% 3rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: white;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 1000;
+                padding: 6rem 2rem 2rem;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav a .nav-icon {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+                --text-xl: 2.4rem;
+                --text-lg: 2rem;
+            }
+            
+            .newsletter-cta {
+                padding: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 50px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-submit {
+                border-radius: 50px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            :root {
+                --text-xl: 2rem;
+                --text-base: 1rem;
+            }
+            
+            header {
+                padding: 1.2rem 5%;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <img src="{% static 'images/AurbientT.png' %}" alt="Aurbient Technologies Logo">
+        </div>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="/services">
+                    <i class="fas fa-cogs nav-icon"></i>
+                    Services
+                </a></li>
+                <li><a href="/insights" class="active">
+                    <i class="fas fa-lightbulb nav-icon"></i>
+                    Insights
+                </a></li>
+                <li><a href="/case-studies">
+                    <i class="fas fa-project-diagram nav-icon"></i>
+                    Case Studies
+                </a></li>
+                <li><a href="/about">
+                    <i class="fas fa-chess nav-icon"></i>
+                    Process
+                </a></li>
+                <li><a href="#contact">
+                    <i class="fas fa-envelope nav-icon"></i>
+                    Contact
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Insights Hero Section -->
+    <section class="insights-hero">
+        <h1>AI <span class="gradient-text">Insights & Research</span></h1>
+        <p>Cutting-edge perspectives on artificial intelligence strategy, implementation trends, and measurable business impact from our team of experts.</p>
+        <div class="content-categories">
+            <button class="category-btn active">All Content</button>
+            <button class="category-btn">AI Strategy</button>
+            <button class="category-btn">Case Studies</button>
+            <button class="category-btn">Industry Trends</button>
+            <button class="category-btn">Technical Guides</button>
+        </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <div class="articles-container">
+        <div class="section-title">
+            <h2>Latest <span class="gradient-text">Articles</span></h2>
+            <p>Expert analysis and practical guidance on AI implementation</p>
+        </div>
+        
+        <div class="articles-grid">
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1677442135136-760c813a743d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">AI Strategy</span>
+                        <span>June 15, 2023</span>
+                    </div>
+                    <h3>The 5 Pillars of Successful Enterprise AI Adoption</h3>
+                    <p>Discover the framework we've developed through implementing AI solutions for Fortune 500 companies that ensures measurable ROI.</p>
+                    <a href="#" class="article-link">
+                        Read Article
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1655720828018-edd0da023864?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">Technical Guide</span>
+                        <span>May 28, 2023</span>
+                    </div>
+                    <h3>Evaluating ML Model Performance: Beyond Accuracy Metrics</h3>
+                    <p>Why your AI models might be giving you false confidence and how to establish more robust evaluation frameworks.</p>
+                    <a href="#" class="article-link">
+                        Read Article
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">Industry Trends</span>
+                        <span>May 10, 2023</span>
+                    </div>
+                    <h3>2023 AI in Retail: Emerging Use Cases That Deliver ROI</h3>
+                    <p>How leading retailers are leveraging AI for inventory optimization, personalized marketing, and loss prevention.</p>
+                    <a href="#" class="article-link">
+                        Read Article
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Featured Research Section -->
+    <section class="featured-research">
+        <div class="research-container">
+            <div class="section-title">
+                <h2>Featured <span class="gradient-text">Research</span></h2>
+                <p>In-depth analysis and original studies from our AI research team</p>
+            </div>
+            
+            <div class="research-card">
+                <div class="research-content">
+                    <h3>State of Enterprise AI Adoption 2023</h3>
+                    <p>Our annual benchmark study analyzing AI adoption patterns across industries, implementation challenges, and ROI metrics from 450+ organizations.</p>
+                    <div class="cta-container">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            Download Report
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-chart-bar"></i>
+                            Key Findings
+                        </button>
+                    </div>
+                </div>
+                <div class="research-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Articles Grid -->
+    <div class="articles-container">
+        <div class="articles-grid">
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">Case Study</span>
+                        <span>April 22, 2023</span>
+                    </div>
+                    <h3>How We Reduced Fraud by 47% for a Financial Services Client</h3>
+                    <p>A detailed look at the machine learning architecture and implementation process behind our successful fraud detection system.</p>
+                    <a href="#" class="article-link">
+                        Read Article
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">AI Strategy</span>
+                        <span>April 5, 2023</span>
+                    </div>
+                    <h3>Building an AI Center of Excellence: A Blueprint</h3>
+                    <p>The organizational structures, talent strategies, and governance models that enable successful enterprise AI programs.</p>
+                    <a href="#" class="article-link">
+                        Read Article
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">Technical Guide</span>
+                        <span>March 18, 2023</span>
+                    </div>
+                    <h3>Data Pipeline Architecture for AI: Best Practices</h3>
+                    <p>How to design scalable data infrastructure that supports both current and future AI initiatives.</p>
+                    <a href="#" class="article-link">
+                        Read Article
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Newsletter CTA -->
+    <div class="newsletter-cta">
+        <h3>Stay Ahead with AI Insights</h3>
+        <p>Subscribe to our newsletter for monthly updates on AI strategy, implementation best practices, and exclusive research findings.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Your professional email" class="newsletter-input" required>
+            <button type="submit" class="newsletter-submit">
+                Subscribe
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="{% static 'images/AurbientT.png' %}" alt="Aurbient Technologies Logo">
+                </div>
+                <p>AI strategy consulting and implementation services that deliver measurable business impact through artificial intelligence.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">
+                        <i class="fas fa-chevron-right"></i>
+                        AI Strategy
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fas fa-chevron-right"></i>
+                        Machine Learning
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fas fa-chevron-right"></i>
+                        Data Infrastructure
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fas fa-chevron-right"></i>
+                        AI Optimization
+                    </a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">
+                        <i class="fas fa-chevron-right"></i>
+                        About Us
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fas fa-chevron-right"></i>
+                        Case Studies
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fas fa-chevron-right"></i>
+                        Careers
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fas fa-chevron-right"></i>
+                        Blog
+                    </a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our AI strategy insights and updates.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Aurbient Technologies. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Back to top button visibility
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Update active nav link
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Back to top button
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Category filtering functionality
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // In a real implementation, you would filter articles here
+                console.log(`Filtering by: ${btn.textContent}`);
+            });
+        });
+        
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.article-card, .research-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.article-card, .research-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        // Run once on load
+        animateOnScroll();
+        
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strategic Process | Aurbient Technologies</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #6e48aa;
+        --secondary: #9d50bb;
+        --dark: #1a1a2e;
+        --light: #f8f9fa;
+        --accent: #00b4d8;
+        --success: #4caf50;
+        --warning: #ffc107;
+        --danger: #f44336;
+        --text-xl: 3.5rem;
+        --text-lg: 2.5rem;
+        --text-md: 1.5rem;
+        --text-base: 1.15rem;
+        --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--light);
+        color: var(--dark);
+        overflow-x: hidden;
+        font-size: var(--text-base);
+        line-height: 1.7;
+      }
+
+      /* Header */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.8rem 5%;
+        position: fixed;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 1000;
+        box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+        transition: var(--transition);
+      }
+
+      header.scrolled {
+        padding: 1.2rem 5%;
+        box-shadow: 0 5px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        font-size: 2.2rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-icon {
+        font-size: 1.8rem;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2.5rem;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      nav a:hover {
+        color: var(--primary);
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: -8px;
+        left: 0;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        transition: var(--transition);
+        border-radius: 3px;
+      }
+
+      nav a.active::after,
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        color: var(--dark);
+        cursor: pointer;
+        z-index: 1001;
+      }
+
+      /* Hero Section */
+      .process-hero {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        padding: 0 5%;
+        position: relative;
+        overflow: hidden;
+        padding-top: 8rem;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 72, 170, 0.1) 0%,
+          rgba(157, 80, 187, 0.1) 100%
+        );
+      }
+
+      .process-hero::before {
+        content: "";
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(110, 72, 170, 0.12) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        top: -400px;
+        right: -400px;
+        z-index: -1;
+        animation: pulse 15s infinite alternate;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+      }
+
+      .process-hero-content {
+        max-width: 800px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .process-hero h1 {
+        font-size: var(--text-xl);
+        margin-bottom: 1.8rem;
+        line-height: 1.2;
+        font-weight: 800;
+      }
+
+      .gradient-text {
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .process-hero p {
+        font-size: var(--text-md);
+        margin-bottom: 2.5rem;
+        color: #555;
+        line-height: 1.8;
+      }
+
+      /* Process Visualization */
+      .process-visualization {
+        padding: 6rem 5%;
+        background-color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .process-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .process-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 4rem;
+      }
+
+      .process-steps {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        position: relative;
+        margin-bottom: 4rem;
+      }
+
+      .process-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 22%;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+      }
+
+      .step-number {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 10px 25px rgba(110, 72, 170, 0.3);
+        transition: var(--transition);
+      }
+
+      .process-step:hover .step-number {
+        transform: scale(1.1) rotate(10deg);
+      }
+
+      .step-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .process-line {
+        position: absolute;
+        top: 35px;
+        left: 10%;
+        width: 80%;
+        height: 4px;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        z-index: 1;
+      }
+
+      /* Process Details */
+      .process-details {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        padding: 3rem;
+        margin-top: 2rem;
+        display: none;
+      }
+
+      .process-details.active {
+        display: block;
+        animation: fadeIn 0.6s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .process-detail-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        gap: 1.5rem;
+      }
+
+      .process-detail-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+      }
+
+      .process-detail-title {
+        font-size: 2rem;
+        color: var(--primary);
+      }
+
+      .process-detail-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .process-detail-column h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+        color: var(--dark);
+      }
+
+      .process-detail-column p {
+        color: #666;
+        margin-bottom: 1.5rem;
+      }
+
+      .process-features {
+        margin-top: 1.5rem;
+      }
+
+      .process-feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .process-feature-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(110, 72, 170, 0.1);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .process-feature-content h4 {
+        margin-bottom: 0.5rem;
+      }
+
+      .process-feature-content p {
+        color: #666;
+        font-size: 0.95rem;
+      }
+
+      /* Methodology */
+      .methodology {
+        padding: 6rem 5%;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 72, 170, 0.05) 0%,
+          rgba(157, 80, 187, 0.05) 100%
+        );
+      }
+
+      .methodology-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-top: 4rem;
+      }
+
+      .methodology-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: var(--transition);
+      }
+
+      .methodology-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      }
+
+      .methodology-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+      }
+
+      .methodology-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .methodology-card p {
+        color: #666;
+      }
+
+      /* CTA Section */
+      .process-cta {
+        padding: 6rem 5%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        text-align: center;
+      }
+
+      .process-cta h2 {
+        font-size: var(--text-lg);
+        margin-bottom: 1.5rem;
+      }
+
+      .process-cta p {
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+        opacity: 0.9;
+      }
+
+      .cta-button {
+        padding: 1.2rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        background: white;
+        color: var(--primary);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 6rem 5% 3rem;
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-logo {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .footer-about p {
+        color: #bbb;
+        margin-bottom: 1.5rem;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .social-link {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: white;
+        transition: var(--transition);
+      }
+
+      .social-link:hover {
+        background: var(--primary);
+        transform: translateY(-5px);
+      }
+
+      .footer-links h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        color: white;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 1rem;
+      }
+
+      .footer-links a {
+        color: #bbb;
+        text-decoration: none;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .footer-links a i {
+        font-size: 0.8rem;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .footer-links a:hover i {
+        transform: translateX(5px);
+      }
+
+      .footer-newsletter p {
+        color: #bbb;
+        margin-bottom: 1.5rem;
+      }
+
+      .newsletter-form {
+        display: flex;
+      }
+
+      .newsletter-input {
+        flex: 1;
+        padding: 0.8rem 1rem;
+        border: none;
+        border-radius: 50px 0 0 50px;
+        font-size: 1rem;
+      }
+
+      .newsletter-submit {
+        padding: 0.8rem 1.5rem;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        color: white;
+        border: none;
+        border-radius: 0 50px 50px 0;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .newsletter-submit:hover {
+        transform: translateX(5px);
+      }
+
+      .copyright {
+        text-align: center;
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #777;
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 20px rgba(110, 72, 170, 0.3);
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(110, 72, 170, 0.4);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        .process-steps {
+          flex-wrap: wrap;
+          gap: 2rem;
+        }
+
+        .process-step {
+          width: 45%;
+          margin-bottom: 3rem;
+        }
+
+        .process-line {
+          display: none;
+        }
+
+        .process-detail-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 992px) {
+        :root {
+          --text-xl: 2.8rem;
+          --text-lg: 2.2rem;
+          --text-md: 1.3rem;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 400px;
+          height: 100vh;
+          background: white;
+          box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+          transition: var(--transition);
+          z-index: 1000;
+          padding: 6rem 2rem 2rem;
+        }
+
+        nav.active {
+          right: 0;
+        }
+
+        nav ul {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --text-xl: 2.4rem;
+          --text-lg: 2rem;
+        }
+
+        .process-step {
+          width: 100%;
+        }
+
+        .methodology-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 576px) {
+        :root {
+          --text-xl: 2rem;
+          --text-base: 1rem;
+        }
+
+        header {
+          padding: 1.2rem 5%;
+        }
+
+        .logo {
+          font-size: 1.8rem;
+        }
+
+        .process-hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .process-detail-header {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <a href="landing.html" class="logo">
+        <i class="fas fa-brain logo-icon"></i>
+        Aurbient
+      </a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav id="mainNav">
+        <ul>
+          <li>
+            <a href="services.html">
+              <i class="fas fa-cogs nav-icon"></i>
+              Services
+            </a>
+          </li>
+          <li>
+            <a href="process.html" class="active">
+              <i class="fas fa-chess nav-icon"></i>
+              Process
+            </a>
+          </li>
+          <li>
+            <a href="case-studies.html">
+              <i class="fas fa-project-diagram nav-icon"></i>
+              Case Studies
+            </a>
+          </li>
+          <li>
+            <a href="testimonials.html">
+              <i class="fas fa-quote-left nav-icon"></i>
+              Testimonials
+            </a>
+          </li>
+          <li>
+            <a href="contact.html">
+              <i class="fas fa-envelope nav-icon"></i>
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="process-hero">
+      <div class="process-hero-content">
+        <h1>Our <span class="gradient-text">Strategic Process</span></h1>
+        <p>
+          A proven methodology for AI transformation that delivers measurable
+          business impact through careful planning, execution, and continuous
+          improvement.
+        </p>
+      </div>
+    </section>
+
+    <!-- Process Visualization -->
+    <section class="process-visualization">
+      <div class="section-title">
+        <h2>The Aurbient <span class="gradient-text">AI Framework</span></h2>
+        <p>
+          Our four-phase approach ensures successful AI adoption and maximum
+          business value
+        </p>
+      </div>
+
+      <div class="process-container">
+        <div class="process-main">
+          <div class="process-steps">
+            <div class="process-step" data-step="discovery">
+              <div class="step-number">1</div>
+              <div class="step-title">Discovery</div>
+            </div>
+            <div class="process-step" data-step="strategy">
+              <div class="step-number">2</div>
+              <div class="step-title">Strategy</div>
+            </div>
+            <div class="process-step" data-step="implementation">
+              <div class="step-number">3</div>
+              <div class="step-title">Implementation</div>
+            </div>
+            <div class="process-step" data-step="evolution">
+              <div class="step-number">4</div>
+              <div class="step-title">Evolution</div>
+            </div>
+            <div class="process-line"></div>
+          </div>
+
+          <!-- Discovery Details -->
+          <div class="process-details" id="discovery-details">
+            <div class="process-detail-header">
+              <div class="process-detail-icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <h2 class="process-detail-title">Discovery Phase</h2>
+            </div>
+            <div class="process-detail-content">
+              <div class="process-detail-column">
+                <h3>Understanding Your Business</h3>
+                <p>
+                  We begin by deeply understanding your organization's goals,
+                  challenges, and opportunities. This phase establishes the
+                  foundation for all subsequent work.
+                </p>
+
+                <div class="process-features">
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Business Objectives Alignment</h4>
+                      <p>
+                        Identify key business goals and how AI can support them
+                      </p>
+                    </div>
+                  </div>
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Opportunity Assessment</h4>
+                      <p>Evaluate where AI can create the most value</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="process-detail-column">
+                <h3>Technical Evaluation</h3>
+                <p>
+                  Comprehensive analysis of your current technical landscape and
+                  data infrastructure to assess AI readiness.
+                </p>
+
+                <div class="process-features">
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-database"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Data Audit</h4>
+                      <p>
+                        Evaluate quality, quantity and accessibility of data
+                        assets
+                      </p>
+                    </div>
+                  </div>
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-server"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Infrastructure Review</h4>
+                      <p>Assess current technical capabilities and gaps</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Strategy Details -->
+          <div class="process-details" id="strategy-details">
+            <div class="process-detail-header">
+              <div class="process-detail-icon">
+                <i class="fas fa-chess"></i>
+              </div>
+              <h2 class="process-detail-title">Strategy Phase</h2>
+            </div>
+            <div class="process-detail-content">
+              <div class="process-detail-column">
+                <h3>Roadmap Development</h3>
+                <p>
+                  We create a customized AI adoption roadmap aligned with your
+                  business priorities and technical capabilities.
+                </p>
+
+                <div class="process-features">
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Implementation Plan</h4>
+                      <p>Prioritized initiatives with clear milestones</p>
+                    </div>
+                  </div>
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>ROI Framework</h4>
+                      <p>Metrics and KPIs to measure success</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="process-detail-column">
+                <h3>Organizational Alignment</h3>
+                <p>
+                  Ensuring your team is prepared for AI adoption with the right
+                  skills, processes, and governance.
+                </p>
+
+                <div class="process-features">
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-users"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Change Management</h4>
+                      <p>Preparing your organization for transformation</p>
+                    </div>
+                  </div>
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Governance Framework</h4>
+                      <p>Ethical guidelines and risk management</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Implementation Details -->
+          <div class="process-details" id="implementation-details">
+            <div class="process-detail-header">
+              <div class="process-detail-icon">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <h2 class="process-detail-title">Implementation Phase</h2>
+            </div>
+            <div class="process-detail-content">
+              <div class="process-detail-column">
+                <h3>Solution Development</h3>
+                <p>
+                  Building and deploying AI solutions with a focus on quality,
+                  scalability, and business impact.
+                </p>
+
+                <div class="process-features">
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-code"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Model Development</h4>
+                      <p>Custom AI/ML models tailored to your needs</p>
+                    </div>
+                  </div>
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-plug"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>System Integration</h4>
+                      <p>Seamless connection with existing systems</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="process-detail-column">
+                <h3>Deployment & Monitoring</h3>
+                <p>
+                  Careful rollout of solutions with continuous performance
+                  tracking and optimization.
+                </p>
+
+                <div class="process-features">
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Phased Deployment</h4>
+                      <p>Controlled rollout with testing at each stage</p>
+                    </div>
+                  </div>
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Performance Tracking</h4>
+                      <p>Real-time monitoring of key metrics</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Evolution Details -->
+          <div class="process-details" id="evolution-details">
+            <div class="process-detail-header">
+              <div class="process-detail-icon">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              <h2 class="process-detail-title">Evolution Phase</h2>
+            </div>
+            <div class="process-detail-content">
+              <div class="process-detail-column">
+                <h3>Continuous Improvement</h3>
+                <p>
+                  Ongoing optimization and enhancement of AI systems to maintain
+                  peak performance.
+                </p>
+
+                <div class="process-features">
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Model Refinement</h4>
+                      <p>Regular updates with new data and techniques</p>
+                    </div>
+                  </div>
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-expand"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Scalability Planning</h4>
+                      <p>Architecting for future growth</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="process-detail-column">
+                <h3>Strategic Expansion</h3>
+                <p>
+                  Identifying new opportunities to expand AI applications across
+                  the organization.
+                </p>
+
+                <div class="process-features">
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Innovation Workshops</h4>
+                      <p>Exploring emerging AI applications</p>
+                    </div>
+                  </div>
+                  <div class="process-feature">
+                    <div class="process-feature-icon">
+                      <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="process-feature-content">
+                      <h4>Enterprise Integration</h4>
+                      <p>Expanding AI across business units</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="methodology">
+      <div class="section-title">
+        <h2>Our Strategic <span class="gradient-text">Methodology</span></h2>
+        <p>
+          Principles that guide our approach to AI transformation and ensure
+          successful outcomes
+        </p>
+      </div>
+
+      <div class="methodology-grid">
+        <div class="methodology-card">
+          <div class="methodology-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>Business-First Approach</h3>
+          <p>
+            We start with your business objectives, not technology. Every AI
+            initiative must demonstrate clear value and ROI.
+          </p>
+        </div>
+
+        <div class="methodology-card">
+          <div class="methodology-icon">
+            <i class="fas fa-chess-board"></i>
+          </div>
+          <h3>Strategic Roadmapping</h3>
+          <p>
+            We create phased implementation plans that balance quick wins with
+            long-term transformation.
+          </p>
+        </div>
+
+        <div class="methodology-card">
+          <div class="methodology-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Human-Centered Design</h3>
+          <p>
+            Our solutions enhance human capabilities, not replace them, with
+            careful attention to user experience.
+          </p>
+        </div>
+
+        <div class="methodology-card">
+          <div class="methodology-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Responsible AI</h3>
+          <p>
+            We prioritize ethical considerations, fairness, transparency, and
+            accountability in all our solutions.
+          </p>
+        </div>
+
+        <div class="methodology-card">
+          <div class="methodology-icon">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <h3>Systems Thinking</h3>
+          <p>
+            We consider the broader organizational ecosystem to ensure seamless
+            integration and adoption.
+          </p>
+        </div>
+
+        <div class="methodology-card">
+          <div class="methodology-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Data-Driven Iteration</h3>
+          <p>
+            We continuously measure performance and refine our approach based on
+            empirical evidence.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="process-cta">
+      <h2>Ready to Implement a Strategic AI Approach?</h2>
+      <p>
+        Our proven framework can help your organization successfully adopt AI
+        with measurable business impact.
+      </p>
+      <button class="cta-button">
+        <i class="fas fa-calendar-check"></i>
+        Schedule Strategy Session
+      </button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <i class="fas fa-brain"></i>
+            Aurbient
+          </div>
+          <p>
+            AI strategy consulting and implementation services that deliver
+            measurable business impact through artificial intelligence.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Services</h3>
+          <ul>
+            <li>
+              <a href="services.html">
+                <i class="fas fa-chevron-right"></i>
+                AI Strategy
+              </a>
+            </li>
+            <li>
+              <a href="services.html">
+                <i class="fas fa-chevron-right"></i>
+                Machine Learning
+              </a>
+            </li>
+            <li>
+              <a href="services.html">
+                <i class="fas fa-chevron-right"></i>
+                Data Infrastructure
+              </a>
+            </li>
+            <li>
+              <a href="services.html">
+                <i class="fas fa-chevron-right"></i>
+                AI Optimization
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Company</h3>
+          <ul>
+            <li>
+              <a href="about.html">
+                <i class="fas fa-chevron-right"></i>
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="case-studies.html">
+                <i class="fas fa-chevron-right"></i>
+                Case Studies
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-chevron-right"></i>
+                Careers
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-chevron-right"></i>
+                Blog
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <h3>Newsletter</h3>
+          <p>Subscribe to our AI strategy insights and updates.</p>
+          <form class="newsletter-form">
+            <input
+              type="email"
+              placeholder="Your email"
+              class="newsletter-input"
+              required
+            />
+            <button type="submit" class="newsletter-submit">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2023 Aurbient Technologies. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mainNav = document.getElementById("mainNav");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mainNav.classList.toggle("active");
+        mobileMenuBtn.innerHTML = mainNav.classList.contains("active")
+          ? '<i class="fas fa-times"></i>'
+          : '<i class="fas fa-bars"></i>';
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll("nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 992) {
+            mainNav.classList.remove("active");
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+          }
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("header");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+
+        // Back to top button visibility
+        const backToTop = document.getElementById("backToTop");
+        if (window.scrollY > 300) {
+          backToTop.classList.add("visible");
+        } else {
+          backToTop.classList.remove("visible");
+        }
+      });
+
+      // Back to top button
+      document.getElementById("backToTop").addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Process Step Interaction
+      const processSteps = document.querySelectorAll(".process-step");
+      const processDetails = document.querySelectorAll(".process-details");
+
+      // Show first step by default
+      document.getElementById("discovery-details").classList.add("active");
+
+      processSteps.forEach((step) => {
+        step.addEventListener("click", () => {
+          const stepId = step.dataset.step;
+
+          // Hide all details
+          processDetails.forEach((detail) => {
+            detail.classList.remove("active");
+          });
+
+          // Show selected detail
+          document.getElementById(`${stepId}-details`).classList.add("active");
+
+          // Update active step styling
+          processSteps.forEach((s) => {
+            s.classList.remove("active");
+          });
+          step.classList.add("active");
+        });
+      });
+
+      // Animate elements when they come into view
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll(
+          ".process-step, .methodology-card"
+        );
+
+        elements.forEach((element) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+
+          if (elementPosition < screenPosition) {
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+          }
+        });
+      };
+
+      // Set initial state for animated elements
+      document
+        .querySelectorAll(".process-step, .methodology-card")
+        .forEach((element) => {
+          element.style.opacity = "0";
+          element.style.transform = "translateY(30px)";
+          element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        });
+
+      // Run once on load
+      animateOnScroll();
+
+      // Run on scroll
+      window.addEventListener("scroll", animateOnScroll);
+    </script>
+  </body>
+</html>

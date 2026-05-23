@@ -1,0 +1,11 @@
+/* subtle custom styles for Career Mentor */
+body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+.muted { color: #6b7280; }
+.btn-secondary {
+  border: 2px solid #6C47FF;
+  color: #6C47FF;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  background: white;
+  font-weight: 600;
+}

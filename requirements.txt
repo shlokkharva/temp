@@ -1,0 +1,10 @@
+Django
+djongo==1.3.6
+gunicorn
+whitenoise
+pymongo[srv]
+pytz
+dnspython
+meta
+openai
+reportlab

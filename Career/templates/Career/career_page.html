@@ -1,0 +1,465 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Career Mentor — Aurbient</title>
+
+  <!-- Tailwind (remove if your site already injects it) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Optional local CSS -->
+  <link rel="stylesheet" href="{% static 'career/career.css' %}">
+
+  <style>
+    /* minimal overrides to align with Aurbient theme */
+    :root{
+      --purple-1: #6C47FF;
+      --purple-2: #9A5CFF;
+      --teal: #00B5D9;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--purple-1), var(--purple-2));
+      color: white;
+      padding: 12px 20px;
+      border-radius: 9999px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(108,71,255,0.18);
+    }
+    .btn-primary:disabled { opacity: 0.6; filter: saturate(.6); cursor: not-allowed; }
+    .card { background: linear-gradient(180deg,#ffffff,#fbf8ff); border-radius: 18px; box-shadow: 0 6px 30px rgba(20,18,53,0.06); }
+    .accent-pill { background: linear-gradient(90deg,#EDE6FF,#F3F0FF); color: var(--purple-1); padding:6px 10px; border-radius:999px; font-weight:600; }
+    .muted { color:#6b7280; }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <header class="w-full sticky top-0 bg-white/80 backdrop-blur-xl shadow-sm z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Left: Logo -->
+    <a href="/" class="flex items-center gap-3">
+      <!-- Replace the image src with your actual logo -->
+      <img src="{% static 'images/AurbientT.png' %}" class="h-9" alt="Aurbient Logo">
+      <span class="text-2xl font-bold text-gray-900">Aurbient</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a href="/services/" class="hover:text-purple-600 transition">Services</a>
+      <a href="/process/" class="hover:text-purple-600 transition">Process</a>
+      <a href="/case-studies/" class="hover:text-purple-600 transition">Case Studies</a>
+      <a href="/blogs/" class="hover:text-purple-600 transition">Blogs</a>
+      <a href="/contact/" class="hover:text-purple-600 transition">Contact</a>
+
+      <a href="/ai-readiness/" 
+         class="ml-4 px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 text-white shadow hover:shadow-md transition">
+        AI Assessment
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobileMenuBtn"
+            class="md:hidden p-2 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-100 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+           viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Nav Drawer -->
+  <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 space-y-3 text-sm font-medium">
+    <a href="/services/" class="block py-1 hover:text-purple-600">Services</a>
+    <a href="/process/" class="block py-1 hover:text-purple-600">Process</a>
+    <a href="/case-studies/" class="block py-1 hover:text-purple-600">Case Studies</a>
+    <a href="/blogs/" class="block py-1 hover:text-purple-600">Blogs</a>
+    <a href="/contact/" class="block py-1 hover:text-purple-600">Contact</a>
+
+    <a href="/ai-readiness/"
+       class="inline-block mt-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 text-white shadow">
+       AI Assessment
+    </a>
+  </div>
+</header>
+    <!-- HERO -->
+       <!-- HERO -->
+    <section class="flex items-center justify-between mb-8" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+          Career Mentor — Personalized AI Assistant
+        </h1>
+        <p class="mt-3 text-gray-600 max-w-2xl">
+          Upload your resume or paste your profile, tell us your goal, and receive a tailored career plan:
+          target roles, skill gaps, learning path, market trends and a salary estimate.
+        </p>
+      </div>
+      ...
+    </section>
+
+    <!-- WIZARD -->
+    <main id="wizard" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- LEFT: Form -->
+      <section class="md:col-span-2 space-y-6">
+
+        <!-- card: profile -->
+        <div class="p-6 card">
+          <div class="flex items-start justify-between">
+            <h2 class="text-lg font-bold">Profile</h2>
+            <div class="muted text-sm">Step <span id="stepIndicator">1</span> / 3</div>
+          </div>
+
+          <div class="mt-4 grid gap-4">
+            <input id="name" type="text" placeholder="Full name (optional)"
+                   class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-200" />
+
+            <input id="email" type="email" placeholder="Email (optional) — we'll use it to send the PDF"
+                   class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-200" />
+
+            <input id="objective" type="text" placeholder="Objective / Target role (e.g., Data Scientist, Product Manager)"
+                   class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-200" />
+
+            <label class="block text-sm text-gray-600">Paste resume or profile (preferred), or upload a file</label>
+            <textarea id="resume_text" rows="6" placeholder="Paste your resume or summary of skills..."
+                      class="w-full border border-gray-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-200"></textarea>
+
+            <div class="flex items-center gap-4">
+              <div id="dropzone" class="flex-1 p-4 border-2 border-dashed border-gray-200 rounded-xl text-center cursor-pointer hover:border-purple-300">
+                <div class="text-sm muted">Drag & drop PDF/DOCX or click to upload</div>
+                <div id="dropFilename" class="text-xs mt-2 muted"></div>
+                <input id="resume_file" type="file" accept=".pdf,.docx,.txt" class="hidden" />
+              </div>
+
+              <div class="w-40">
+                <button id="startBtn" class="btn-primary w-full">Start</button>
+              </div>
+            </div>
+
+            <div id="hint" class="text-xs muted">We trim and anonymize sensitive inputs before sending to the AI. Files are processed temporarily.</div>
+          </div>
+        </div>
+
+        <!-- card: Q&A area (hidden until profile submitted) -->
+        <div id="qaCard" class="p-6 card hidden">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-bold">Quick Questions</h2>
+            <div class="muted text-sm">Helps tailor the plan</div>
+          </div>
+
+          <div id="summaryBlock" class="mt-4 text-gray-700"></div>
+
+          <div id="questionBlock" class="mt-4">
+            <!-- question inserted here -->
+          </div>
+
+          <div class="mt-4 flex gap-3">
+            <button id="skipQ" class="btn-secondary">Skip question</button>
+            <button id="answerBtn" class="btn-primary">Submit answer</button>
+          </div>
+        </div>
+
+        <!-- card: results (hidden until done) -->
+        <div id="resultCard" class="p-6 card hidden">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-bold">Personalized Career Plan</h2>
+            <div id="downloadWrap" class="hidden">
+              <a id="downloadPdf" class="btn-primary inline-block text-sm" href="#">Download PDF</a>
+            </div>
+          </div>
+
+          <div id="resultContent" class="mt-4 space-y-4">
+            <!-- results inserted here -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT: Progress + tips -->
+      <aside class="space-y-6">
+        <div class="p-6 card">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-sm muted">Progress</div>
+              <div id="progressText" class="font-semibold text-lg">Not started</div>
+            </div>
+            <div class="accent-pill">AI</div>
+          </div>
+
+          <div class="mt-4">
+            <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+              <div id="progressBar" class="h-2 bg-gradient-to-r from-purple-500 to-purple-300" style="width:0%"></div>
+            </div>
+          </div>
+
+          <ul class="mt-4 text-sm muted space-y-2">
+            <li>• Crisp resume → better plan</li>
+            <li>• Answer follow-ups honestly</li>
+            <li>• We produce a PDF you can share with mentors</li>
+          </ul>
+        </div>
+
+        <div class="p-6 card">
+          <h3 class="font-semibold">What you get</h3>
+          <ul class="mt-3 text-sm muted space-y-2">
+            <li>• Target job titles & skill gaps</li>
+            <li>• Prioritized learning path</li>
+            <li>• Market trends & salary estimate</li>
+          </ul>
+        </div>
+
+        <div class="p-6 card text-sm muted">
+          <strong>Privacy</strong>
+          <p class="mt-2">We use your input only to generate the plan. Optionally store the result to send a downloadable PDF.</p>
+        </div>
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- JS: ties to your existing endpoints. Adjust URL names if needed. -->
+  <script>
+  const startBtn = document.getElementById('startBtn');
+  const dropzone = document.getElementById('dropzone');
+  const dropInput = document.getElementById('resume_file');
+  const dropFilename = document.getElementById('dropFilename');
+
+  let pendingQuestions = [];
+  let currentQuestion = null;
+  let profileDbId = null;
+  let totalSteps = 3;
+  let step = 1;
+
+  // drag & click handlers
+  dropzone.addEventListener('click', () => dropInput.click());
+  dropzone.addEventListener('dragover', (e)=>{ e.preventDefault(); dropzone.classList.add('ring-2','ring-purple-200'); });
+  dropzone.addEventListener('dragleave', ()=>{ dropzone.classList.remove('ring-2','ring-purple-200'); });
+  dropzone.addEventListener('drop', (e)=> {
+    e.preventDefault();
+    dropzone.classList.remove('ring-2','ring-purple-200');
+    const f = e.dataTransfer.files[0];
+    if (f) { dropInput.files = e.dataTransfer.files; dropFilename.textContent = f.name; }
+  });
+
+  dropInput.addEventListener('change', (e)=> {
+    const f = e.target.files[0];
+    if (f) dropFilename.textContent = f.name;
+  });
+
+  function setProgress(percent, text){
+    document.getElementById('progressBar').style.width = percent + '%';
+    document.getElementById('progressText').textContent = text;
+    document.getElementById('stepIndicator').textContent = step;
+  }
+
+  // helper fetch with CSRF
+  function csrftoken(){
+    const name = 'csrftoken';
+    const cookies = document.cookie.split(';').map(s=>s.trim());
+    for(const c of cookies){
+      if(c.startsWith(name+'=')) return decodeURIComponent(c.split('=')[1]);
+    }
+    return '';
+  }
+
+  async function startSession(){
+    await fetch("{% url 'career:api_start' %}", { method:'POST', headers: {'X-CSRFToken': csrftoken()} });
+    setProgress(5, 'Session started');
+  }
+
+  startBtn.addEventListener('click', async () => {
+    startBtn.disabled = true;
+    startBtn.textContent = 'Processing...';
+    await startSession();
+
+    const name = document.getElementById('name').value || "";
+    const email = document.getElementById('email').value || "";
+    const objective = document.getElementById('objective').value || "";
+    const resume_text = document.getElementById('resume_text').value || "";
+
+    // file or JSON
+    if (dropInput.files.length > 0){
+      const form = new FormData();
+      form.append('name', name);
+      form.append('email', email);
+      form.append('objective', objective);
+      form.append('resume_file', dropInput.files[0]);
+      const resp = await fetch("{% url 'career:api_submit_profile' %}", { method:'POST', body: form, headers: {'X-CSRFToken': csrftoken()} });
+      const data = await resp.json();
+      handleProfileResponse(data);
+    } else {
+      const payload = { name, email, objective, resume_text };
+      const resp = await fetch("{% url 'career:api_submit_profile' %}", {
+        method:'POST',
+        headers: {'Content-Type':'application/json', 'X-CSRFToken': csrftoken()},
+        body: JSON.stringify(payload)
+      });
+      const data = await resp.json();
+      handleProfileResponse(data);
+    }
+
+    startBtn.disabled = false;
+    startBtn.textContent = 'Start';
+  });
+
+  function handleProfileResponse(data){
+    step = 2;
+    setProgress(35, 'Answer quick questions');
+    document.getElementById('qaCard').classList.remove('hidden');
+    document.getElementById('summaryBlock').textContent = data.summary || "Profile captured";
+    pendingQuestions = data.questions || [];
+    loadNextQuestion();
+  }
+
+  function loadNextQuestion(){
+    const qb = document.getElementById('questionBlock');
+    qb.innerHTML = '';
+    if (pendingQuestions.length > 0){
+      currentQuestion = pendingQuestions.shift();
+      qb.innerHTML = `
+        <div class="text-sm font-medium text-gray-800 mb-2">${currentQuestion}</div>
+        <textarea id="qanswer" rows="4" class="w-full p-3 border border-gray-200 rounded-xl"></textarea>
+      `;
+    } else {
+      currentQuestion = ""; // final prompt
+      qb.innerHTML = `
+        <div class="text-sm font-medium text-gray-800 mb-2">Any additional context? (optional)</div>
+        <textarea id="qanswer" rows="4" class="w-full p-3 border border-gray-200 rounded-xl" placeholder="Add extra context to improve your plan"></textarea>
+      `;
+    }
+  }
+
+  // skip and answer buttons
+  document.getElementById('skipQ').addEventListener('click', async ()=>{
+    // treat skip as empty answer and fetch next question
+    await submitQA("");
+  });
+  document.getElementById('answerBtn').addEventListener('click', async ()=>{
+    const answer = document.getElementById('qanswer') ? document.getElementById('qanswer').value.trim() : "";
+    await submitQA(answer);
+  });
+
+  async function submitQA(answer){
+    // disable controls
+    document.getElementById('answerBtn').disabled = true;
+    setProgress(60, 'Analyzing...');
+
+    const payload = { question: currentQuestion || "", answer: answer || "" };
+    const resp = await fetch("{% url 'career:api_question' %}", {
+      method:'POST',
+      headers: {'Content-Type':'application/json', 'X-CSRFToken': csrftoken()},
+      body: JSON.stringify(payload)
+    });
+    const data = await resp.json();
+
+    if (data.next_question){
+      // continue questions
+      pendingQuestions = [data.next_question].concat(pendingQuestions);
+      loadNextQuestion();
+      setProgress(45, 'Answer quick questions');
+    } else if (data.result){
+      // finished - show results
+      step = 3;
+      setProgress(100, 'Complete');
+      showResult(data.result);
+    }
+
+    document.getElementById('answerBtn').disabled = false;
+  }
+
+  function showResult(result){
+    document.getElementById('qaCard').classList.add('hidden');
+    const rc = document.getElementById('resultCard');
+    rc.classList.remove('hidden');
+
+    const content = document.getElementById('resultContent');
+    content.innerHTML = '';
+
+    // summary
+    if (result.summary){
+      const el = document.createElement('div');
+      el.className = 'p-4 bg-white rounded-xl shadow';
+      el.innerHTML = `<div class="text-sm muted">Summary</div><div class="font-semibold mt-1">${result.summary}</div>`;
+      content.appendChild(el);
+    }
+
+    // target roles
+    if (result.target_roles && result.target_roles.length){
+      const el = document.createElement('div');
+      el.className = 'p-4 bg-white rounded-xl shadow';
+      el.innerHTML = `<div class="text-sm muted">Target Roles</div>
+        <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">${result.target_roles.map(r=>`<div class="border rounded-md p-2 text-sm">${r}</div>`).join('')}</div>`;
+      content.appendChild(el);
+    }
+
+    // skills gap
+    if (result.skills_gap && result.skills_gap.length){
+      const el = document.createElement('div');
+      el.className = 'p-4 bg-white rounded-xl shadow';
+      el.innerHTML = `<div class="text-sm muted">Skills Gap</div>
+        <ul class="mt-2 list-disc pl-5 text-sm">${result.skills_gap.map(s=>`<li>${s}</li>`).join('')}</ul>`;
+      content.appendChild(el);
+    }
+
+    // learning path
+    if (result.learning_path && result.learning_path.length){
+      const el = document.createElement('div');
+      el.className = 'p-4 bg-white rounded-xl shadow';
+      el.innerHTML = `<div class="text-sm muted">Learning Path</div>
+        <ol class="mt-2 list-decimal pl-5 text-sm">${result.learning_path.map(l=>`<li>${l}</li>`).join('')}</ol>`;
+      content.appendChild(el);
+    }
+
+    // market trends & salary
+    const sideways = document.createElement('div'); sideways.className = 'grid grid-cols-1 md:grid-cols-2 gap-3';
+    if (result.market_trends && result.market_trends.length){
+      const el = document.createElement('div');
+      el.className = 'p-4 bg-white rounded-xl shadow';
+      el.innerHTML = `<div class="text-sm muted">Market Trends</div>
+        <ul class="mt-2 list-disc pl-5 text-sm">${result.market_trends.map(m=>`<li>${m}</li>`).join('')}</ul>`;
+      sideways.appendChild(el);
+    }
+    if (result.salary_estimate){
+      const el2 = document.createElement('div');
+      el2.className = 'p-4 bg-white rounded-xl shadow';
+      el2.innerHTML = `<div class="text-sm muted">Salary Estimate</div><div class="mt-2 font-medium">${result.salary_estimate}</div>`;
+      sideways.appendChild(el2);
+    }
+    if (sideways.children.length) content.appendChild(sideways);
+
+    // next steps
+    if (result.next_steps && result.next_steps.length){
+      const el = document.createElement('div');
+      el.className = 'p-4 bg-white rounded-xl shadow';
+      el.innerHTML = `<div class="text-sm muted">Next Steps</div>
+        <ul class="mt-2 list-disc pl-5 text-sm">${result.next_steps.map(n=>`<li>${n}</li>`).join('')}</ul>`;
+      content.appendChild(el);
+    }
+
+    // PDF link
+    if (result._db_id){
+      const pdfWrap = document.getElementById('downloadWrap');
+      pdfWrap.classList.remove('hidden');
+      const link = document.getElementById('downloadPdf');
+      link.href = "{% url 'career:result_pdf' 0 %}".replace('/0/', '/' + result._db_id + '/');
+    }
+
+    // scroll into view
+    rc.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  </script>
+  <script>
+  const mobileBtn = document.getElementById("mobileMenuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  mobileBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
+</body>
+<!-- Aurbient Header -->
+
+</html>
