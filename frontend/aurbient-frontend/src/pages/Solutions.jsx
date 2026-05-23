@@ -6,7 +6,7 @@ import HeroSection from "../components/HeroSection";
 
 // Map icon names to custom SVGs
 const getIcon = (name) => {
-  const props = { className: "w-6 h-6 text-[#3B82F6]" };
+  const props = { className: "w-6 h-6 text-accent" };
   switch (name) {
     case "brain":
       return (
@@ -81,7 +81,7 @@ export default function Solutions() {
         headline="Intelligent systems engineered for velocity"
         subtext="From cognitive strategic analysis to ultra-low latency real-time data pipelines, our solutions are architected to establish an enduring, compounding operational advantage."
       />
-      <div className="bg-[#111111] text-white py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+      <div className="bg-bg text-text py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
         {/* Decorative gradients */}
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-radial from-teal-dim to-transparent opacity-30 pointer-events-none blur-[100px]" />
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-teal-dim to-transparent opacity-20 pointer-events-none blur-[100px]" />
@@ -91,7 +91,7 @@ export default function Solutions() {
         {/* Loading Spinner */}
         {loading ? (
           <div className="flex justify-center items-center py-24">
-            <div className="w-12 h-12 rounded-full border-t-2 border-[#3B82F6] animate-spin" />
+            <div className="w-12 h-12 rounded-full border-t-2 border-accent animate-spin" />
           </div>
         ) : (
           /* Cards Grid */
@@ -113,10 +113,10 @@ export default function Solutions() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-full bg-[#3B82F6]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                       {getIcon(service.icon_name)}
                     </div>
-                    <span className="text-[10px] font-semibold text-[#3B82F6] uppercase tracking-wider font-body">
+                    <span className="text-[10px] font-semibold text-accent uppercase tracking-wider font-body">
                       // {service.kicker || "Service"}
                     </span>
                   </div>
@@ -124,7 +124,7 @@ export default function Solutions() {
                   {/* Tags */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {(service.tags || []).map((tag, i) => (
-                      <span key={i} className="text-[10px] uppercase tracking-wider font-body text-white/50 bg-white/5 px-2 py-0.5 rounded-full">
+                      <span key={i} className="text-[10px] uppercase tracking-wider font-body text-muted bg-border px-2 py-0.5 rounded-full">
                         {tag}
                       </span>
                     ))}
@@ -132,10 +132,10 @@ export default function Solutions() {
                 </div>
 
                 <div>
-                  <h3 className="font-heading text-white text-3xl tracking-[-1px] mb-3">
+                  <h3 className="font-heading text-text text-3xl tracking-[-1px] mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-white/60 font-body font-light leading-relaxed">
+                  <p className="text-sm text-muted font-body font-light leading-relaxed">
                     {service.description}
                   </p>
                 </div>

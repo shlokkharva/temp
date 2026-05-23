@@ -9,11 +9,17 @@ export default {
       colors: {
         bg: "var(--color-bg)",
         surface: "var(--color-surface)",
+        border: "var(--color-border)",
+        muted: "var(--color-muted)",
+        text: "var(--color-text)",
+        accent: {
+          DEFAULT: "var(--color-accent)",
+          dark: "var(--color-accent-dark)",
+        },
         teal: {
           DEFAULT: "var(--color-teal)",
           dim: "var(--color-teal-dim)",
         },
-        border: "var(--color-border)",
       },
       fontFamily: {
         heading: ["'Barlow'", "sans-serif"],

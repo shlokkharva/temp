@@ -37,7 +37,7 @@ export default function Technology() {
         headline="The stack built for cognitive speed"
         subtext="Aurbient's technology system merges enterprise-grade containerization with localized vector representation grids, delivering intelligence at the absolute speed of need."
       />
-      <div className="bg-[#111111] text-white py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+      <div className="bg-bg text-text py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
         {/* Glow effects */}
         <div className="bg-neural-glow top-1/4 right-1/3" />
         <div className="bg-neural-glow bottom-1/4 left-1/4" />
@@ -53,17 +53,17 @@ export default function Technology() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="liquid-glass border border-white/5 rounded-[1.5rem] p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 hover:border-[#3B82F6]/20 transition-all duration-300 group cursor-pointer"
+              className="liquid-glass border border-border rounded-[1.5rem] p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 hover:border-accent/20 transition-all duration-300 group cursor-pointer"
             >
               {/* Left Side */}
               <div className="flex-1">
-                <div className="text-xs font-body text-[#3B82F6] uppercase tracking-widest font-semibold mb-3">
+                <div className="text-xs font-body text-accent uppercase tracking-widest font-semibold mb-3">
                   {layer.layer} //
                 </div>
-                <h3 className="font-heading text-white text-4xl tracking-[-1px] mb-4 group-hover:text-[#3B82F6] transition-colors">
+                <h3 className="font-heading text-text text-4xl tracking-[-1px] mb-4 group-hover:text-accent transition-colors">
                   {layer.name}
                 </h3>
-                <p className="text-sm md:text-base text-white/60 font-body font-light leading-relaxed max-w-2xl">
+                <p className="text-sm md:text-base text-muted font-body font-light leading-relaxed max-w-2xl">
                   {layer.desc}
                 </p>
               </div>
@@ -73,7 +73,7 @@ export default function Technology() {
                 {layer.stack.map((item) => (
                   <span 
                     key={item} 
-                    className="text-[10px] md:text-xs font-body uppercase tracking-wider text-white bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-[#3B82F6]/10 hover:border-[#3B82F6]/30 hover:text-[#3B82F6] transition-all duration-300"
+                    className="text-[10px] md:text-xs font-body uppercase tracking-wider text-text bg-border border border-border px-3 py-1.5 rounded-full hover:bg-accent/10 hover:border-accent/30 hover:text-accent transition-all duration-300"
                   >
                     {item}
                   </span>

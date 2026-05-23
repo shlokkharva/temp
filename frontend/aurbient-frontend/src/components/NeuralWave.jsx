@@ -8,7 +8,7 @@
  */
 import { useEffect, useRef } from "react";
 
-const COUNT = 420;
+const COUNT = 700;
 const MOUSE_RADIUS = 140;
 const MOUSE_FORCE  = 2.8;
 

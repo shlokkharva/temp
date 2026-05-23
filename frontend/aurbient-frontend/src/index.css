@@ -5,15 +5,27 @@
 @tailwind utilities;
 
 :root {
-  --color-bg:         #111111;
-  --color-surface:    #1a1a1a;
-  --color-teal:       #3B82F6;
-  --color-teal-dim:   rgba(59, 130, 246, 0.15);
+  --color-bg:         #F4F3FB;
+  --color-surface:    #FFFFFF;
+  --color-border:     #DBD8F5;
+  --color-muted:      #7E78C0;
+  --color-text:       #1E1B4B;
+  --color-accent:     #5046C8;
+  --color-accent-dark:#3730A3;
+
+  /* Legacy mapped variables */
+  --color-teal:       #5046C8;
+  --color-teal-dim:   rgba(80, 70, 200, 0.15);
   --color-white:      #FFFFFF;
   --color-white-90:   #F5F5F5;
   --color-white-60:   #666666;
   --color-white-15:   rgba(102, 102, 102, 0.2);
-  --color-border:     rgba(255,255,255,0.08);
+
+  /* Hero specifically preserved variables */
+  --hero-bg:          #111111;
+  --hero-surface:     #1a1a1a;
+  --hero-text:        #FFFFFF;
+  --hero-accent:      #3B82F6;
 }
 
 * {
@@ -23,8 +35,8 @@
 }
 
 html, body {
-  background-color: #111111;
-  color: var(--color-white-90);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: 'Barlow', sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;

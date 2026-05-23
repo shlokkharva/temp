@@ -41,7 +41,7 @@ export default function Industries() {
         headline="Sectors structured for compound scale"
         subtext="We adapt neural technologies directly to the unique dimensional challenges of mission-critical systems across four primary global sectors."
       />
-      <div className="bg-[#111111] text-white py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+      <div className="bg-bg text-text py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
         {/* Decorative bg gradient */}
         <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-gradient-radial from-teal-dim to-transparent opacity-20 pointer-events-none blur-[100px]" />
 
@@ -61,33 +61,33 @@ export default function Industries() {
                 boxShadow: `0 0 50px ${ind.glow}`,
                 borderColor: "rgba(0, 229, 192, 0.2)"
               }}
-              className="liquid-glass border border-white/5 rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[360px] transition-all duration-300 cursor-pointer"
+              className="liquid-glass border border-border rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[360px] transition-all duration-300 cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <span className="font-heading text-[#3B82F6] text-3xl">
+                  <span className="font-heading text-accent text-3xl">
                     // {ind.num}
                   </span>
                   <div className="flex flex-wrap gap-1.5 justify-end">
                     {ind.tags.slice(0, 2).map(t => (
-                      <span key={t} className="text-[9px] uppercase tracking-wider font-body text-white/40 bg-white/5 px-2 py-0.5 rounded-full">
+                      <span key={t} className="text-[9px] uppercase tracking-wider font-body text-muted bg-border px-2 py-0.5 rounded-full">
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <h3 className="font-heading text-white text-4xl tracking-[-1px] mb-4">
+                <h3 className="font-heading text-text text-4xl tracking-[-1px] mb-4">
                   {ind.title}
                 </h3>
-                <p className="text-sm md:text-base text-white/60 font-body font-light leading-relaxed">
+                <p className="text-sm md:text-base text-muted font-body font-light leading-relaxed">
                   {ind.description}
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-white/5">
+              <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-border">
                 {ind.tags.map(t => (
-                  <span key={t} className="text-[10px] uppercase tracking-wider font-body text-[#3B82F6]/70 bg-[#3B82F6]/5 px-2.5 py-1 rounded-full hover:text-[#3B82F6] transition-colors">
+                  <span key={t} className="text-[10px] uppercase tracking-wider font-body text-accent/70 bg-accent/5 px-2.5 py-1 rounded-full hover:text-accent transition-colors">
                     {t}
                   </span>
                 ))}

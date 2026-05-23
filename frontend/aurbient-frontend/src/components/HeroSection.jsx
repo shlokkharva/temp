@@ -69,16 +69,16 @@ export default function HeroSection({ kicker, headline, subtext, children }) {
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        background: "#111111",
+        background: "var(--hero-bg)",
       }}
     >
       <NeuralWave />
       <div style={{
         position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none",
         background: `
-          radial-gradient(ellipse 70% 60% at 50% 50%, rgba(17,17,17,0.85) 0%, rgba(17,17,17,0.4) 50%, transparent 100%),
-          linear-gradient(to top, rgba(17,17,17,0.9) 0%, transparent 25%),
-          linear-gradient(to bottom, rgba(17,17,17,0.7) 0%, transparent 18%)
+          radial-gradient(ellipse 70% 60% at 50% 50%, rgba(26,26,26,0.3) 0%, rgba(26,26,26,0.1) 50%, transparent 100%),
+          linear-gradient(to top, var(--hero-surface) 0%, transparent 25%),
+          linear-gradient(to bottom, var(--hero-surface) 0%, transparent 18%)
         `,
       }} />
 
@@ -99,12 +99,12 @@ export default function HeroSection({ kicker, headline, subtext, children }) {
             <div ref={kickerRef} style={{ transition: "transform 0.12s ease-out", willChange: "transform", marginBottom: "1.4rem" }}>
               <span style={{
                 display: "inline-flex", alignItems: "center", gap: "10px",
-                color: "#3B82F6", fontSize: "0.68rem", fontWeight: 600,
+                color: "var(--hero-accent)", fontSize: "0.68rem", fontWeight: 600,
                 letterSpacing: "0.22em", textTransform: "uppercase",
               }}>
-                <span style={{ width: "22px", height: "1px", background: "#3B82F6", display: "inline-block" }} />
+                <span style={{ width: "22px", height: "1px", background: "var(--hero-accent)", display: "inline-block" }} />
                 {kicker}
-                <span style={{ width: "22px", height: "1px", background: "#3B82F6", display: "inline-block" }} />
+                <span style={{ width: "22px", height: "1px", background: "var(--hero-accent)", display: "inline-block" }} />
               </span>
             </div>
           </motion.div>
@@ -117,7 +117,7 @@ export default function HeroSection({ kicker, headline, subtext, children }) {
                 margin: 0,
                 fontWeight: 600,
                 fontSize: "clamp(3rem, 5.5vw, 4.8rem)",
-                lineHeight: 1.04, letterSpacing: "-1.5px", color: "#fff",
+                lineHeight: 1.04, letterSpacing: "-1.5px", color: "var(--hero-text)",
               }}>
                 {headline}
               </h1>
