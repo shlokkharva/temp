@@ -354,8 +354,108 @@ footer {
   padding: 48px 0 32px;
 }
 
+/* Tech Slider */
+.tech-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 30px 0;
+    background: transparent;
+    display: flex;
+}
+.tech-slider::before,
+.tech-slider::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+}
+.tech-slider::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg) 0%, transparent 100%);
+}
+.tech-slider::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg) 0%, transparent 100%);
+}
+.tech-slide-track {
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+}
+.tech-slide-track img {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
+    filter: opacity(0.8);
+    transition: all 0.3s ease;
+}
+.tech-slide-track img:hover {
+    filter: opacity(1);
+    transform: scale(1.1);
+}
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 40px)); }
+}
+
 @media (max-width: 980px) {
   .hero-text h1 { font-size: 2.5rem; }
   .nav-links { gap: 18px; flex-wrap: wrap; }
   .mega-menu { display: none !important; }
+}
+
+/* ---------------------------------
+   GLOBAL SPACING OPTIMIZATION SYSTEM
+--------------------------------- */
+/* Tighten global paragraph spacing */
+p {
+  margin-bottom: 12px !important;
+}
+
+/* Tighten spacing between adjacent paragraphs */
+p + p {
+  margin-top: 8px !important;
+}
+
+/* Tighten global section vertical spacings that have inline styling */
+section[style*="padding:"] {
+  padding-top: 52px !important;
+  padding-bottom: 52px !important;
+}
+
+section[style*="padding-top:"] {
+  padding-top: 52px !important;
+}
+
+section[style*="padding-bottom:"] {
+  padding-bottom: 52px !important;
+}
+
+/* Tighten general containers that are styled as spacers */
+div[style*="padding: \"80px 0\""], div[style*="padding: \"100px 0\""] {
+  padding: 52px 0 !important;
+}
+
+/* Target and balance hero banners for high-end readability */
+section.hero, section[style*="minHeight"], section[style*="75vh"], section[style*="70vh"] {
+  padding-top: 48px !important;
+  padding-bottom: 58px !important;
+}
+
+/* Tighten thought leadership & other standard sections in home/about */
+.thought-layer, .ecosystem-showcase, .intelligence-motion, .philosophy-section {
+  padding-top: 52px !important;
+  padding-bottom: 52px !important;
+}
+
+/* Tighter final CTAs */
+.build-ecosystem {
+  padding-top: 48px !important;
+  padding-bottom: 48px !important;
+  margin: 32px 0 52px !important;
 }

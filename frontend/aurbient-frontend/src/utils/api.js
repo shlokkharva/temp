@@ -169,12 +169,14 @@ export const getTeamMembers = async () => {
 
 export const postContactInquiry = async (data) => {
   try {
-    const response = await api.post("/contact/", data);
+    const response = await axios.post("/api/contact", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return response.data;
   } catch (error) {
-    console.warn("Django contact submission failed. Using fallback client simulation:", error.message);
-    // Simulate API delay for premium feel
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    return { success: true, message: "Demo Inquiry submitted successfully!", data };
+    console.error("Mail submission error:", error.response?.data || error.message);
+    throw error;
   }
 };

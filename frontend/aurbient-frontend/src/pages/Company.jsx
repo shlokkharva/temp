@@ -29,7 +29,7 @@ export default function Company() {
           <div className="hero-text" style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
             <div className="hero-badge">Core Narrative</div>
             <h1 style={{ fontSize: "3rem" }}>Interfacing with living intelligence</h1>
-            <p style={{ margin: "0 auto 36px" }}>Founded in 2020, Aurbient Technologies was built on a single, powerful conviction: that complexity is not a barrier, but an opportunity. We design intelligent systems that live, learn, and grow alongside your enterprise.</p>
+            <p style={{ margin: "0 auto 36px" }}>Established in 2026 as a registered MSME in Indore, Madhya Pradesh, Aurbient Technologies was built on a single, powerful conviction: that complexity is not a barrier, but an opportunity. We design intelligent systems that live, learn, and grow alongside your enterprise.</p>
           </div>
         </div>
       </section>
