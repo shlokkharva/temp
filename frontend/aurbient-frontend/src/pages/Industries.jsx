@@ -1,102 +1,68 @@
-// src/pages/Industries.jsx
-import { motion } from "framer-motion";
-import HeroSection from "../components/HeroSection";
-
 const industries = [
   {
     num: "01",
     title: "Logistics & Supply Chain",
     description: "We deploy adaptive orchestration layers that synchronize freight movement, prevent port bottleneck choke points, and recalculate dispatch variables in low milliseconds.",
     tags: ["Dynamic Routing", "Congestion Forecasting", "Autonomous Dispatch", "Freight Vectoring"],
-    glow: "rgba(59, 130, 246, 0.08)"
+    icon: "fa-truck"
   },
   {
     num: "02",
     title: "Quantitative Finance",
     description: "Architecting zero-latency extraction grids to parser market telemetry, read global signals, and compile earnings micro-signals at sub-second scales.",
     tags: ["Micro-Signals Parser", "Zero-Latency Grids", "Portfolio Optimization", "Trend Synthesis"],
-    glow: "rgba(59, 130, 246, 0.08)"
+    icon: "fa-chart-pie"
   },
   {
     num: "03",
     title: "Aerospace & Satellites",
     description: "Powering telemetry ingests capable of managing hyper-dimensional coordinate files, trajectory drift equations, and robust off-grid data handshakes.",
     tags: ["Trajectory Engines", "Coordinate Mapping", "gRPC Pipelines", "Fail-Safe Handshakes"],
-    glow: "rgba(59, 130, 246, 0.08)"
+    icon: "fa-satellite"
   },
   {
     num: "04",
     title: "Autonomous Enterprise",
     description: "Injecting self-refining digital workflows across core architectures, enabling back-offices to execute exception handling and compliance tasks autonomously.",
     tags: ["Agentic Back-office", "Exception Handling", "Self-Tuning Compliance", "Data Synthesis"],
-    glow: "rgba(59, 130, 246, 0.08)"
+    icon: "fa-building"
   }
 ];
 
 export default function Industries() {
   return (
-    <>
-      <HeroSection 
-        kicker="Industry Verticals"
-        headline="Sectors structured for compound scale"
-        subtext="We adapt neural technologies directly to the unique dimensional challenges of mission-critical systems across four primary global sectors."
-      />
-      <div className="bg-bg text-text py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
-        {/* Decorative bg gradient */}
-        <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-gradient-radial from-teal-dim to-transparent opacity-20 pointer-events-none blur-[100px]" />
+    <main>
+      <section className="hero" style={{ padding: "80px 0 60px", background: "linear-gradient(110deg, #FDFFFE 0%, #F0F9FA 100%)" }}>
+        <div className="container">
+          <div className="hero-text" style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
+            <div className="hero-badge">Industry Verticals</div>
+            <h1 style={{ fontSize: "3rem" }}>Sectors structured for compound scale</h1>
+            <p style={{ margin: "0 auto 36px" }}>We adapt neural technologies directly to the unique dimensional challenges of mission-critical systems across four primary global sectors.</p>
+          </div>
+        </div>
+      </section>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-
-        {/* Sectors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {industries.map((ind, i) => (
-            <motion.div
-              key={ind.num}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: i * 0.1, ease: "easeOut" }}
-              whileHover={{ 
-                scale: 1.01, 
-                boxShadow: `0 0 50px ${ind.glow}`,
-                borderColor: "rgba(0, 229, 192, 0.2)"
-              }}
-              className="liquid-glass border border-border rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[360px] transition-all duration-300 cursor-pointer"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <span className="font-heading text-accent text-3xl">
-                    // {ind.num}
-                  </span>
-                  <div className="flex flex-wrap gap-1.5 justify-end">
-                    {ind.tags.slice(0, 2).map(t => (
-                      <span key={t} className="text-[9px] uppercase tracking-wider font-body text-muted bg-border px-2 py-0.5 rounded-full">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+      <section className="ecosystem-showcase">
+        <div className="container">
+          <div className="ecosystem-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
+            {industries.map((ind, i) => (
+              <div key={i} className="eco-card" style={{ display: 'flex', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: "16px" }}>
+                  <i className={`fas ${ind.icon}`} style={{ fontSize: "2rem", color: "var(--color-accent)" }}></i>
+                  <span style={{ fontSize: "2rem", fontWeight: "300", color: "#B8E4E7" }}>{ind.num}</span>
                 </div>
-
-                <h3 className="font-heading text-text text-4xl tracking-[-1px] mb-4">
-                  {ind.title}
-                </h3>
-                <p className="text-sm md:text-base text-muted font-body font-light leading-relaxed">
-                  {ind.description}
-                </p>
+                <h3 style={{ margin: "8px 0", fontSize: "1.6rem" }}>{ind.title}</h3>
+                <p style={{ color: "#395568", marginTop: "8px", marginBottom: "24px" }}>{ind.description}</p>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: 'auto' }}>
+                  {ind.tags.map((tag, i) => (
+                    <span key={i} style={{ fontSize: "0.7rem", background: "#E4F1F3", color: "var(--color-accent-hover)", padding: "4px 10px", borderRadius: "20px", textTransform: "uppercase", fontWeight: "600" }}>{tag}</span>
+                  ))}
+                </div>
               </div>
-
-              <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-border">
-                {ind.tags.map(t => (
-                  <span key={t} className="text-[10px] uppercase tracking-wider font-body text-accent/70 bg-accent/5 px-2.5 py-1 rounded-full hover:text-accent transition-colors">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
-        </div>
-      </div>
-    </>
+      </section>
+    </main>
   );
 }
