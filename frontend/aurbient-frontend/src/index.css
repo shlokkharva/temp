@@ -673,7 +673,7 @@ section.hero, section[style*="minHeight"], section[style*="75vh"], section[style
   }
 
   /* Contact page layouts stacked */
-  section style*="padding: 80px 0" div.container > div {
+  section[style*="padding: 80px 0"] div.container > div {
     flex-direction: column !important;
   }
 
