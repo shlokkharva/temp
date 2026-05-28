@@ -459,6 +459,19 @@ section.hero, section[style*="minHeight"], section[style*="75vh"], section[style
   padding-bottom: 58px !important;
 }
 
+/* Explicitly restore premium spacing for Case Study pages to prevent card overlap */
+section.case-study-hero {
+  padding-top: 80px !important;
+  padding-bottom: 160px !important;
+}
+
+@media (max-width: 768px) {
+  section.case-study-hero {
+    padding-top: 120px !important;
+    padding-bottom: 120px !important;
+  }
+}
+
 /* Tighten thought leadership & other standard sections in home/about */
 .thought-layer, .ecosystem-showcase, .intelligence-motion, .philosophy-section {
   padding-top: 52px !important;
@@ -620,5 +633,9 @@ section.hero, section[style*="minHeight"], section[style*="75vh"], section[style
     border-left-color: var(--color-accent) !important;
     background: rgba(19, 170, 179, 0.04) !important;
     transform: translateX(4px);
+  }
+
+  .testimonial-arrow {
+    display: none !important;
   }
 }

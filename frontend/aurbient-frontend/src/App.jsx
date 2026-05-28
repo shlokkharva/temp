@@ -27,6 +27,13 @@ import OperationalVisibility from "./pages/OperationalVisibility";
 import CloudInfrastructure from "./pages/CloudInfrastructure";
 import BusinessOperatingLayer from "./pages/BusinessOperatingLayer";
 
+// Company Subpages
+import VisionPhilosophy from "./pages/VisionPhilosophy";
+import Leadership from "./pages/Leadership";
+import EngineeringCulture from "./pages/EngineeringCulture";
+import MissionEcosystem from "./pages/MissionEcosystem";
+import Careers from "./pages/Careers";
+
 // ScrollToTop utility that triggers on route shifts
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -61,6 +68,13 @@ function AppRoutes() {
       <Route path="/systems/operational-visibility" element={<OperationalVisibility />} />
       <Route path="/systems/cloud-infrastructure" element={<CloudInfrastructure />} />
       <Route path="/systems/business-operating-layer" element={<BusinessOperatingLayer />} />
+
+      {/* Specific Company Pages */}
+      <Route path="/company/vision-philosophy" element={<VisionPhilosophy />} />
+      <Route path="/company/leadership" element={<Leadership />} />
+      <Route path="/company/engineering-culture" element={<EngineeringCulture />} />
+      <Route path="/company/mission-ecosystem" element={<MissionEcosystem />} />
+      <Route path="/company/careers" element={<Careers />} />
 
       <Route path="/insights" element={<Insights />} />
       <Route path="/about" element={<About />} />

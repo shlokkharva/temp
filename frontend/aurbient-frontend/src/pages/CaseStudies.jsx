@@ -1,5 +1,13 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import OperationalVisibility from "./OperationalVisibility";
+import AIWorkflowSystems from "./AIWorkflowSystems";
+import BusinessOperatingLayer from "./BusinessOperatingLayer";
+import AutomationEcosystems from "./AutomationEcosystems";
+import ERPIntelligence from "./ERPIntelligence";
+import Logistics from "./Logistics";
+import RetailCommerce from "./RetailCommerce";
+import CloudInfrastructure from "./CloudInfrastructure";
 
 const fallbackImages = {
   "01": [
@@ -393,270 +401,166 @@ export default function CaseStudies() {
     }
   }, [selectedCase]);
 
-  const [galleryHeroBg, setGalleryHeroBg] = useState("/assets/case_studies_hero.webp");
+  const sliderImages = caseStudies.map(cs => fallbackImages[cs.id]?.[0] || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80");
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
   useEffect(() => {
-    if (!selectedCase) {
+    if (selectedCase) return;
+
+    // Preload all slider images in the background to prevent flashing
+    sliderImages.forEach(src => {
       const img = new Image();
-      img.src = "/assets/case_studies_hero.webp";
-      img.onerror = () => {
-        setGalleryHeroBg("https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80");
-      };
+      img.src = src;
+    });
+
+    const interval = setInterval(() => {
+      setCurrentSlideIndex(prev => (prev + 1) % sliderImages.length);
+    }, 5000); // Cross-fade slide transition every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [selectedCase, sliderImages.length]);
+
+  const renderCaseStudyComponent = (id) => {
+    switch (id) {
+      case "01":
+        return <OperationalVisibility />;
+      case "02":
+        return <AIWorkflowSystems />;
+      case "03":
+        return <BusinessOperatingLayer />;
+      case "04":
+        return <AutomationEcosystems />;
+      case "05":
+        return <ERPIntelligence />;
+      case "06":
+        return <Logistics />;
+      case "07":
+        return <RetailCommerce />;
+      case "08":
+        return <CloudInfrastructure />;
+      default:
+        return null;
     }
-  }, [selectedCase]);
+  };
+
+  if (selectedCase) {
+    return (
+      <div style={{ position: "relative", minHeight: "100vh" }}>
+        {renderCaseStudyComponent(selectedCase.id)}
+      </div>
+    );
+  }
 
   return (
     <main>
-      {!selectedCase ? (
-        <>
-          <section className="hero" style={{ 
-            position: "relative", 
-            padding: "160px 0 140px", 
-            minHeight: "70vh",
-            display: "flex",
-            alignItems: "center",
-            overflow: "hidden" 
-          }}>
-            {/* Background Image Layer */}
-            <div style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: `url(${galleryHeroBg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              zIndex: 0
-            }}></div>
-            {/* Gradient Overlay for high-end readability */}
-            <div style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(180deg, rgba(14,25,33,0.7) 0%, rgba(14,25,33,0.9) 100%)",
-              zIndex: 1
-            }}></div>
+      <section className="hero" style={{ 
+        position: "relative", 
+        padding: "160px 0 140px", 
+        minHeight: "70vh",
+        display: "flex",
+        alignItems: "center",
+        overflow: "hidden" 
+      }}>
+        {/* Smooth Cross-Fading Background Slider */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 0, overflow: "hidden" }}>
+          {sliderImages.map((imgUrl, index) => (
+            <div
+              key={index}
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage: `url(${imgUrl})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                opacity: index === currentSlideIndex ? 1 : 0,
+                transform: index === currentSlideIndex ? "scale(1.05)" : "scale(1)",
+                transition: "opacity 1.5s ease-in-out, transform 5s ease-out",
+                pointerEvents: "none"
+              }}
+            />
+          ))}
+        </div>
+        {/* Gradient Overlay for high-end readability */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(180deg, rgba(14,25,33,0.7) 0%, rgba(14,25,33,0.9) 100%)",
+          zIndex: 1
+        }}></div>
 
-            <div className="container" style={{ position: "relative", zIndex: 2 }}>
-              <div className="hero-text" style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
-                <div className="hero-badge" style={{ 
-                  display: "inline-block", 
-                  marginBottom: "24px",
-                  background: "rgba(255, 255, 255, 0.1)",
-                  border: "1px solid rgba(255, 255, 255, 0.2)",
-                  color: "#E4F1F3",
-                  backdropFilter: "blur(10px)"
-                }}>Case Studies</div>
-                <h1 style={{ 
-                  fontSize: "4.2rem", 
-                  lineHeight: "1.1", 
-                  marginBottom: "24px", 
-                  color: "#FFFFFF", 
-                  letterSpacing: "-0.02em",
-                  textShadow: "0 4px 20px rgba(0,0,0,0.3)"
-                }}>Operational Implementations</h1>
-                <p style={{ 
-                  fontSize: "1.25rem", 
-                  lineHeight: "1.8", 
-                  color: "#E4F1F3", 
-                  marginBottom: "0",
-                  textShadow: "0 2px 10px rgba(0,0,0,0.3)",
-                  textAlign: "center",
-                  maxWidth: "760px",
-                  marginLeft: "auto",
-                  marginRight: "auto"
-                }}>
-                  Detailed architectural breakdowns of how Aurbient Technologies transforms complex operational bottlenecks into streamlined, intelligent ecosystems.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section style={{ padding: "80px 0", background: "#F4F9FB" }}>
-            <div className="container">
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))", gap: "30px" }}>
-              {caseStudies.map((caseStudy) => (
-                <div 
-                  key={caseStudy.id} 
-                  className="eco-card" 
-                  style={{ cursor: "pointer", transition: "transform 0.3s ease, box-shadow 0.3s ease", display: "flex", flexDirection: "column", height: "100%", padding: 0, overflow: "hidden" }}
-                  onClick={() => {
-                    navigate(`/case-studies/${caseStudy.id}`);
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-10px)";
-                    e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.1)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "none";
-                    e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.05)";
-                  }}
-                >
-                  <img 
-                    src={caseStudy.images[0]} 
-                    alt={caseStudy.title} 
-                    style={{ width: "100%", height: "220px", objectFit: "cover" }} 
-                    onError={(e) => {
-                      e.target.src = fallbackImages[caseStudy.id]?.[0] || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80";
-                    }}
-                  />
-                  <div style={{ padding: "30px", flex: 1, display: "flex", flexDirection: "column" }}>
-                    <span style={{ fontSize: "0.8rem", color: "var(--color-accent)", textTransform: "uppercase", fontWeight: "600", letterSpacing: "1px", display: "block", marginBottom: "12px" }}>Case Study {caseStudy.id}</span>
-                    <h3 style={{ fontSize: "1.4rem", marginBottom: "16px", flex: 1 }}>{caseStudy.title}</h3>
-                    <div style={{ color: "#58798C", fontSize: "0.9rem", fontWeight: "600" }}>{caseStudy.industry}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
+          <div className="hero-text" style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto" }}>
+            <div className="hero-badge" style={{ 
+              display: "inline-block", 
+              marginBottom: "24px",
+              background: "rgba(255, 255, 255, 0.1)",
+              border: "1px solid rgba(255, 255, 255, 0.2)",
+              color: "#E4F1F3",
+              backdropFilter: "blur(10px)"
+            }}>Case Studies</div>
+            <h1 style={{ 
+              fontSize: "4.2rem", 
+              lineHeight: "1.1", 
+              marginBottom: "24px", 
+              color: "#FFFFFF", 
+              letterSpacing: "-0.02em",
+              textShadow: "0 4px 20px rgba(0,0,0,0.3)"
+            }}>Operational Implementations</h1>
+            <p style={{ 
+              fontSize: "1.25rem", 
+              lineHeight: "1.8", 
+              color: "#E4F1F3", 
+              marginBottom: "0",
+              textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+              textAlign: "center",
+              maxWidth: "760px",
+              marginLeft: "auto",
+              marginRight: "auto"
+            }}>
+              Detailed architectural breakdowns of how Aurbient Technologies transforms complex operational bottlenecks into streamlined, intelligent ecosystems.
+            </p>
           </div>
-        </section>
-        </>
-      ) : (
-        <article style={{ background: "#F4F9FB", minHeight: "100vh", paddingBottom: "80px", animation: "fadeIn 0.5s ease-out" }}>
-          <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }`}</style>
-          
-          <div style={{ 
-            position: "relative", 
-            width: "100%", 
-            height: "65vh", 
-            minHeight: "500px",
-            backgroundImage: `url(${heroImage || selectedCase.images[0]})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            display: "flex",
-            alignItems: "flex-end",
-            paddingBottom: "80px"
-          }}>
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "linear-gradient(to top, rgba(14, 25, 33, 0.95) 0%, rgba(14, 25, 33, 0.4) 60%, rgba(14, 25, 33, 0.6) 100%)" }}></div>
-            
-            <div className="container" style={{ position: "relative", zIndex: 2, color: "white" }}>
-              <button 
-                onClick={() => navigate('/case-studies')}
-                style={{ background: "none", border: "none", color: "rgba(255,255,255,0.7)", padding: "0", fontWeight: "500", fontSize: "0.95rem", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "8px", transition: "all 0.3s ease", marginBottom: "30px" }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "white"; e.currentTarget.style.transform = "translateX(-5px)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.7)"; e.currentTarget.style.transform = "translateX(0)"; }}
+        </div>
+      </section>
+
+      <section style={{ padding: "80px 0", background: "#F4F9FB" }}>
+        <div className="container">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))", gap: "30px" }}>
+            {caseStudies.map((caseStudy) => (
+              <div 
+                key={caseStudy.id} 
+                className="eco-card" 
+                style={{ cursor: "pointer", transition: "transform 0.3s ease, box-shadow 0.3s ease", display: "flex", flexDirection: "column", height: "100%", padding: 0, overflow: "hidden" }}
+                onClick={() => {
+                  navigate(`/case-studies/${caseStudy.id}`);
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-10px)";
+                  e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "none";
+                  e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.05)";
+                }}
               >
-                <i className="fas fa-arrow-left"></i> Back to Gallery
-              </button>
-              
-              <span style={{ fontSize: "1.1rem", color: "var(--color-accent)", textTransform: "uppercase", fontWeight: "700", letterSpacing: "3px", display: "block", marginBottom: "20px" }}>Case Study {selectedCase.id}</span>
-              <h1 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", marginBottom: "30px", maxWidth: "900px", lineHeight: "1.15", textShadow: "0 4px 20px rgba(0,0,0,0.4)", fontWeight: "600" }}>{selectedCase.title}</h1>
-              <div style={{ display: "inline-block", padding: "10px 28px", background: "rgba(19, 170, 179, 0.15)", backdropFilter: "blur(10px)", color: "white", borderRadius: "50px", fontSize: "1rem", fontWeight: "600", border: "1px solid rgba(19, 170, 179, 0.4)", boxShadow: "0 4px 15px rgba(0,0,0,0.2)" }}>
-                {selectedCase.industry}
-              </div>
-            </div>
-          </div>
-
-          <div className="container" style={{ marginTop: "-50px", position: "relative", zIndex: 10 }}>
-            <div className="eco-card" style={{ background: "white", padding: "60px", borderRadius: "24px", boxShadow: "0 20px 60px rgba(0,0,0,0.08)", marginBottom: "50px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: "60px", alignItems: "center" }}>
-                <div>
-                  <h3 style={{ fontSize: "2rem", marginBottom: "24px", color: "var(--color-primary)", fontWeight: "600" }}>Executive Overview</h3>
-                  <p style={{ color: "#395568", marginBottom: "0", lineHeight: "1.9", fontSize: "1.1rem" }}>{selectedCase.overview}</p>
-                </div>
-                <div style={{ padding: "40px", background: "linear-gradient(135deg, var(--color-primary) 0%, #111d25 100%)", color: "white", borderRadius: "20px", boxShadow: "0 20px 40px rgba(26, 42, 53, 0.25)", position: "relative", overflow: "hidden" }}>
-                  <div style={{ position: "absolute", top: "-20px", right: "-10px", opacity: "0.05", fontSize: "140px" }}><i className="fas fa-quote-right"></i></div>
-                  <h4 style={{ marginBottom: "20px", color: "var(--color-accent)", fontSize: "1.2rem", display: "flex", alignItems: "center", gap: "12px", textTransform: "uppercase", letterSpacing: "1px" }}>
-                    <i className="fas fa-lightbulb"></i> Core Insight
-                  </h4>
-                  <p style={{ fontStyle: "italic", lineHeight: "1.8", fontSize: "1.2rem", margin: 0, position: "relative", zIndex: 2 }}>"{selectedCase.insight}"</p>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "60px" }}>
-              <div className="eco-card" style={{ background: "white", padding: "50px", borderRadius: "24px", boxShadow: "0 10px 30px rgba(0,0,0,0.03)", borderTop: "4px solid #dc3545" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "30px" }}>
-                  <div style={{ width: "56px", height: "56px", borderRadius: "16px", background: "rgba(220, 53, 69, 0.1)", color: "#dc3545", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.8rem" }}>
-                    <i className="fas fa-exclamation-triangle"></i>
-                  </div>
-                  <h4 style={{ fontSize: "1.6rem", color: "var(--color-primary)", margin: 0, fontWeight: "600" }}>Operational Challenges</h4>
-                </div>
-                <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "20px" }}>
-                  {selectedCase.challenges.map((item, i) => (
-                    <li key={i} style={{ display: "flex", gap: "16px", color: "#395568", fontSize: "1.1rem", lineHeight: "1.6", alignItems: "flex-start" }}>
-                      <span style={{ color: "#dc3545", marginTop: "4px", fontSize: "1.2rem" }}><i className="fas fa-times-circle"></i></span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="eco-card" style={{ background: "white", padding: "50px", borderRadius: "24px", boxShadow: "0 10px 30px rgba(0,0,0,0.03)", borderTop: "4px solid var(--color-accent)" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "30px" }}>
-                  <div style={{ width: "56px", height: "56px", borderRadius: "16px", background: "rgba(19, 170, 179, 0.1)", color: "var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.8rem" }}>
-                    <i className="fas fa-chess-knight"></i>
-                  </div>
-                  <h4 style={{ fontSize: "1.6rem", color: "var(--color-primary)", margin: 0, fontWeight: "600" }}>Strategic Approach</h4>
-                </div>
-                <p style={{ color: "#395568", lineHeight: "1.9", fontSize: "1.1rem", margin: 0 }}>{selectedCase.strategy}</p>
-              </div>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "60px" }}>
-              <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.1)", height: "450px" }}>
                 <img 
-                  src={selectedCase.images[1]} 
-                  alt={`${selectedCase.title} architecture 1`} 
-                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.7s ease" }} 
-                  onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"} 
-                  onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"} 
+                  src={caseStudy.images[0]} 
+                  alt={caseStudy.title} 
+                  style={{ width: "100%", height: "220px", objectFit: "cover" }} 
                   onError={(e) => {
-                    e.target.src = fallbackImages[selectedCase.id]?.[1] || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80";
+                    e.target.src = fallbackImages[caseStudy.id]?.[0] || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80";
                   }}
                 />
+                <div style={{ padding: "30px", flex: 1, display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontSize: "0.8rem", color: "var(--color-accent)", textTransform: "uppercase", fontWeight: "600", letterSpacing: "1px", display: "block", marginBottom: "12px" }}>Case Study {caseStudy.id}</span>
+                  <h3 style={{ fontSize: "1.4rem", marginBottom: "16px", flex: 1 }}>{caseStudy.title}</h3>
+                  <div style={{ color: "#58798C", fontSize: "0.9rem", fontWeight: "600" }}>{caseStudy.industry}</div>
+                </div>
               </div>
-              <div style={{ borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.1)", height: "450px" }}>
-                <img 
-                  src={selectedCase.images[2]} 
-                  alt={`${selectedCase.title} architecture 2`} 
-                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.7s ease" }} 
-                  onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"} 
-                  onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"} 
-                  onError={(e) => {
-                    e.target.src = fallbackImages[selectedCase.id]?.[2] || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80";
-                  }}
-                />
-              </div>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "40px" }}>
-              <div className="eco-card" style={{ background: "white", padding: "40px", borderRadius: "24px", boxShadow: "0 10px 30px rgba(0,0,0,0.02)" }}>
-                <div style={{ width: "48px", height: "48px", borderRadius: "14px", background: "rgba(19, 170, 179, 0.1)", color: "var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem", marginBottom: "24px" }}><i className="fas fa-cubes"></i></div>
-                <h4 style={{ fontSize: "1.4rem", marginBottom: "24px", color: "var(--color-primary)", fontWeight: "600" }}>System Components</h4>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                  {selectedCase.components.map((item, i) => (
-                    <li key={i} style={{ padding: "16px 0", borderBottom: "1px solid #E4F1F3", color: "#395568", display: "flex", alignItems: "center", gap: "16px", fontSize: "1.05rem" }}>
-                      <i className="fas fa-check-circle" style={{ color: "var(--color-accent)", fontSize: "1.2rem" }}></i> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="eco-card" style={{ background: "white", padding: "40px", borderRadius: "24px", boxShadow: "0 10px 30px rgba(0,0,0,0.02)" }}>
-                <div style={{ width: "48px", height: "48px", borderRadius: "14px", background: "rgba(19, 170, 179, 0.1)", color: "var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem", marginBottom: "24px" }}><i className="fas fa-network-wired"></i></div>
-                <h4 style={{ fontSize: "1.4rem", marginBottom: "24px", color: "var(--color-primary)", fontWeight: "600" }}>Tech & Infrastructure</h4>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                  {selectedCase.tech.map((item, i) => (
-                    <li key={i} style={{ padding: "16px 0", borderBottom: "1px solid #E4F1F3", color: "#395568", display: "flex", alignItems: "center", gap: "16px", fontSize: "1.05rem" }}>
-                      <i className="fas fa-layer-group" style={{ color: "var(--color-accent)", fontSize: "1.2rem" }}></i> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="eco-card" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F4F9FB 100%)", padding: "40px", borderRadius: "24px", boxShadow: "0 20px 40px rgba(19, 170, 179, 0.08)", border: "1px solid rgba(19, 170, 179, 0.2)" }}>
-                <div style={{ width: "48px", height: "48px", borderRadius: "14px", background: "var(--color-primary)", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem", marginBottom: "24px", boxShadow: "0 10px 20px rgba(0,0,0,0.1)" }}><i className="fas fa-chart-line"></i></div>
-                <h4 style={{ fontSize: "1.4rem", marginBottom: "24px", color: "var(--color-primary)", fontWeight: "600" }}>Operational Outcomes</h4>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                  {selectedCase.outcomes.map((item, i) => (
-                    <li key={i} style={{ padding: "16px 0", borderBottom: "1px solid rgba(228, 241, 243, 0.8)", color: "#1a2a35", fontWeight: "600", display: "flex", alignItems: "center", gap: "16px", fontSize: "1.05rem" }}>
-                      <i className="fas fa-arrow-up" style={{ color: "var(--color-accent)", fontSize: "1.2rem" }}></i> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
-        </article>
-      )}
+        </div>
+      </section>
 
       <section style={{ padding: "80px 0", background: "var(--color-primary)", color: "white", textAlign: "center" }}>
         <div className="container" style={{ maxWidth: "800px" }}>

@@ -19,7 +19,7 @@ export default function Footer() {
                     <p style={{ marginBottom: "0.5rem" }}><Link to="/" style={{ color: "inherit", textDecoration: "none" }}>Home</Link></p>
                     <p style={{ marginBottom: "0.5rem" }}><Link to="/about" style={{ color: "inherit", textDecoration: "none" }}>About</Link></p>
                     <p style={{ marginBottom: "0.5rem" }}><Link to="/case-studies" style={{ color: "inherit", textDecoration: "none" }}>Case Studies</Link></p>
-                    <p style={{ marginBottom: "0.5rem" }}><Link to="/solutions" style={{ color: "inherit", textDecoration: "none" }}>AI Automation</Link></p>
+                    <p style={{ marginBottom: "0.5rem" }}><Link to="/solutions" style={{ color: "inherit", textDecoration: "none" }}>Solutions Directory</Link></p>
                     <p style={{ marginBottom: "0.5rem" }}><Link to="/contact" style={{ color: "inherit", textDecoration: "none" }}>Let’s Build</Link></p>
                 </div>
                 <div>
@@ -41,12 +41,7 @@ export default function Footer() {
                     <p style={{ marginBottom: "0.5rem" }}><a href="mailto:rajthakur.aurbient@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>rajthakur.aurbient@gmail.com</a></p>
                     <p style={{ marginBottom: "0.5rem" }}><a href="tel:+918629919873" style={{ color: "inherit", textDecoration: "none" }}>+91 8629919873</a></p>
                     <p style={{ marginBottom: "0.5rem", fontSize: "0.9rem", color: "#ccc", marginTop: "1rem", lineHeight: "1.4" }}>
-                      200, Shree Ram Nager 22,<br/>
-                      Bangali Sqr, Indore,<br/>
-                      Madhya Pradesh 452001
-                    </p>
-                    <p style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--color-accent)", opacity: 0.8 }}>
-                      MSME Reg: UDYAM-MP-23-0257373
+                      Indore, Madhya Pradesh-452001, India
                     </p>
                 </div>
             </div>

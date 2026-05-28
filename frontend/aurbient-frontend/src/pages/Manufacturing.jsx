@@ -1,97 +1,197 @@
 import { Link } from "react-router-dom";
 
 export default function Manufacturing() {
+  const image = "/@fs/C:/Users/shlok/.gemini/antigravity/brain/237ae5d4-2088-4c38-86d9-21b74545b555/aurbient_ind_manufacturing_1779956591231.png";
+
   return (
-    <main>
-      <section className="hero" style={{ 
-          padding: "140px 0 100px", 
-          background: `linear-gradient(to right, rgba(13, 27, 42, 0.9) 0%, rgba(13, 27, 42, 0.6) 100%), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat`, 
-          position: "relative", 
-          overflow: "hidden" 
+    <main style={{ background: "#F4F9FB", minHeight: "100vh" }}>
+      {/* Immersive Cinematic Hero Header */}
+      <section className="hero case-study-hero" style={{ 
+        position: "relative", 
+        padding: "160px 0 160px", 
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
       }}>
-        <div className="container" style={{ position: "relative", zIndex: 1 }}>
-          <div className="hero-text" style={{ maxWidth: "800px" }}>
-            <div className="hero-badge" style={{ marginBottom: "20px", background: "rgba(255,255,255,0.1)", color: "white", border: "1px solid rgba(255,255,255,0.2)" }}><i className="fas fa-industry" style={{ marginRight: "8px" }}></i> Manufacturing</div>
-            <h1 style={{ fontSize: "4rem", lineHeight: "1.1", marginBottom: "24px", color: "white" }}>Intelligent Factory Operations.</h1>
-            <p style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.85)", maxWidth: "650px", marginBottom: "40px", lineHeight: "1.6" }}>
-              Digitize your factory floor with predictive AI and automated workflow orchestration. Eliminate production bottlenecks and reduce machine downtime with intelligent systems.
-            </p>
-            <Link to="/contact" className="btn-premium" style={{ background: "white", color: "var(--color-primary)" }}>Transform Your Floor →</Link>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(14, 25, 33, 0.95) 0%, rgba(14, 25, 33, 0.5) 60%, rgba(14, 25, 33, 0.7) 100%)", zIndex: 1 }}></div>
+        
+        <div className="container" style={{ position: "relative", zIndex: 2, color: "white" }}>
+          <Link 
+            to="/" 
+            style={{ 
+              display: "inline-flex", 
+              alignItems: "center", 
+              gap: "8px", 
+              color: "rgba(255, 255, 255, 0.75)", 
+              textDecoration: "none", 
+              fontSize: "1rem", 
+              fontWeight: "500", 
+              marginBottom: "24px", 
+              transition: "all 0.2s" 
+            }}
+            onMouseOver={e => e.currentTarget.style.color = "#FFFFFF"}
+            onMouseOut={e => e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)"}
+          >
+            <i className="fas fa-arrow-left"></i> Back to Industries
+          </Link>
+          <span style={{ fontSize: "1rem", color: "var(--color-accent)", textTransform: "uppercase", fontWeight: "700", letterSpacing: "3px", display: "block", marginBottom: "20px" }}>Industries Ecosystem 01</span>
+          <h1 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", marginBottom: "30px", maxWidth: "900px", lineHeight: "1.15", textShadow: "0 4px 20px rgba(0,0,0,0.4)", fontWeight: "600" }}>Manufacturing & Smart Factory Operations</h1>
+          <div style={{ display: "inline-block", padding: "10px 28px", background: "rgba(19, 170, 179, 0.15)", backdropFilter: "blur(10px)", color: "white", borderRadius: "50px", fontSize: "1rem", fontWeight: "600", border: "1px solid rgba(19, 170, 179, 0.4)" }}>
+            IIoT Telemetry & Assembly Orchestration Console
           </div>
         </div>
       </section>
 
-      <section style={{ padding: "80px 0", background: "#FFFFFF" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <h2 style={{ fontSize: "2.4rem", color: "var(--color-primary)" }}>Key Capabilities</h2>
-            <p style={{ color: "#58798C", fontSize: "1.1rem" }}>Purpose-built automation for the modern manufacturer.</p>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "30px" }}>
-            <div className="eco-card" style={{ padding: "40px", borderRadius: "24px", background: "#F4F9FB" }}>
-              <i className="fas fa-tools" style={{ fontSize: "2rem", color: "var(--color-accent)", marginBottom: "20px" }}></i>
-              <h3 style={{ fontSize: "1.4rem", marginBottom: "12px", color: "var(--color-primary)" }}>Predictive Maintenance</h3>
-              <p style={{ color: "#58798C", lineHeight: "1.6" }}>Analyze machine telemetry to predict component failures before they occur, scheduling maintenance automatically.</p>
+      {/* Main Overlapping Content Layout */}
+      <div className="container" style={{ position: "relative", zIndex: 10, marginTop: "-80px", paddingBottom: "80px" }}>
+        
+        {/* Executive Overview */}
+        <div className="eco-card" style={{ background: "white", padding: "50px", borderRadius: "24px", boxShadow: "0 20px 60px rgba(0,0,0,0.05)", marginBottom: "50px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: "60px", alignItems: "center" }}>
+            <div>
+              <h3 style={{ fontSize: "2rem", marginBottom: "24px", color: "var(--color-primary)", fontWeight: "600" }}>Intelligent Production Architecture</h3>
+              <p style={{ color: "#395568", marginBottom: "20px", lineHeight: "1.9", fontSize: "1.15rem" }}>
+                Modern manufacturing requires highly synchronized automation networks capable of linking factory telemetry with enterprise-level planning systems.
+              </p>
+              <p style={{ color: "#395568", marginBottom: "0", lineHeight: "1.9", fontSize: "1.15rem" }}>
+                Aurbient Technologies designs automated smart factory layers that bring predictive intelligence, unified telemetry coordination, and real-time observability to your assembly operations.
+              </p>
             </div>
-            <div className="eco-card" style={{ padding: "40px", borderRadius: "24px", background: "#F4F9FB" }}>
-              <i className="fas fa-clipboard-check" style={{ fontSize: "2rem", color: "var(--color-accent)", marginBottom: "20px" }}></i>
-              <h3 style={{ fontSize: "1.4rem", marginBottom: "12px", color: "var(--color-primary)" }}>Automated Quality Control</h3>
-              <p style={{ color: "#58798C", lineHeight: "1.6" }}>Deploy computer vision models to inspect products on the assembly line with greater accuracy than human inspectors.</p>
-            </div>
-            <div className="eco-card" style={{ padding: "40px", borderRadius: "24px", background: "#F4F9FB" }}>
-              <i className="fas fa-truck-loading" style={{ fontSize: "2rem", color: "var(--color-accent)", marginBottom: "20px" }}></i>
-              <h3 style={{ fontSize: "1.4rem", marginBottom: "12px", color: "var(--color-primary)" }}>Supply Chain Sync</h3>
-              <p style={{ color: "#58798C", lineHeight: "1.6" }}>Automatically adjust production schedules and raw material orders based on real-time inventory and supplier data.</p>
+            <div style={{ padding: "40px", background: "linear-gradient(135deg, var(--color-primary) 0%, #111d25 100%)", color: "white", borderRadius: "20px", boxShadow: "0 20px 40px rgba(26, 42, 53, 0.25)", position: "relative", overflow: "hidden" }}>
+              <div style={{ position: "absolute", top: "-20px", right: "-10px", opacity: "0.05", fontSize: "140px" }}><i className="fas fa-quote-right"></i></div>
+              <h4 style={{ marginBottom: "20px", color: "var(--color-accent)", fontSize: "1.2rem", display: "flex", alignItems: "center", gap: "12px", textTransform: "uppercase", letterSpacing: "1px" }}>
+                <i className="fas fa-lightbulb"></i> Key Insight
+              </h4>
+              <p style={{ fontStyle: "italic", lineHeight: "1.8", fontSize: "1.2rem", margin: 0, position: "relative", zIndex: 2 }}>
+                "Automation is not just about robotic assembly; it is about synchronizing telemetry streams to eliminate downtime and maximize production clarity."
+              </p>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* The Operational Challenge */}
-      <section style={{ padding: "80px 0", background: "#F4F9FB", borderTop: "1px solid #E6EEF4" }}>
-        <div className="container">
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "60px", alignItems: "center" }}>
-            <div style={{ flex: "1", minWidth: "300px" }}>
-              <h2 style={{ fontSize: "2.4rem", color: "var(--color-primary)", marginBottom: "20px" }}>The Manufacturing Bottleneck</h2>
-              <p style={{ color: "#395568", fontSize: "1.1rem", lineHeight: "1.8", marginBottom: "20px" }}>
-                Modern factory floors generate terabytes of data daily through SCADA systems, PLCs, and MES. Yet, 80% of this data remains siloed.
-              </p>
-              <p style={{ color: "#395568", fontSize: "1.1rem", lineHeight: "1.8" }}>
-                Operators are forced to rely on reactive maintenance protocols and manual quality inspections, resulting in costly unplanned downtime and inconsistent product yields. The gap between physical machines and digital ERP systems creates a massive operational blind spot.
-              </p>
-            </div>
-            <div style={{ flex: "1", minWidth: "300px" }}>
-              <div style={{ background: "white", padding: "40px", borderRadius: "24px", boxShadow: "0 10px 30px rgba(0,0,0,0.03)" }}>
-                <h4 style={{ fontSize: "1.3rem", color: "var(--color-primary)", marginBottom: "16px" }}>The Cost of Inaction</h4>
-                <ul style={{ listStyle: "none", padding: "0" }}>
-                  <li style={{ marginBottom: "16px", display: "flex", alignItems: "flex-start", gap: "12px" }}>
-                    <i className="fas fa-times-circle" style={{ color: "#e74c3c", marginTop: "4px" }}></i>
-                    <span style={{ color: "#58798C", lineHeight: "1.5" }}><strong>Excessive Downtime:</strong> Reactive maintenance costs industrial facilities an estimated $50B annually.</span>
-                  </li>
-                  <li style={{ marginBottom: "16px", display: "flex", alignItems: "flex-start", gap: "12px" }}>
-                    <i className="fas fa-times-circle" style={{ color: "#e74c3c", marginTop: "4px" }}></i>
-                    <span style={{ color: "#58798C", lineHeight: "1.5" }}><strong>Data Silos:</strong> Disconnected systems between the shop floor and management block real-time agility.</span>
-                  </li>
-                  <li style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
-                    <i className="fas fa-times-circle" style={{ color: "#e74c3c", marginTop: "4px" }}></i>
-                    <span style={{ color: "#58798C", lineHeight: "1.5" }}><strong>Manual Defect Tracking:</strong> Human error in QA scales linearly with production speed.</span>
-                  </li>
-                </ul>
+        {/* side-by-side deliverables & focus areas */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "60px" }}>
+          
+          {/* Deliverables Column */}
+          <div className="eco-card" style={{ background: "white", padding: "50px", borderRadius: "24px", boxShadow: "0 10px 30px rgba(0,0,0,0.02)", borderTop: "4px solid var(--color-accent)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "30px" }}>
+              <div style={{ width: "56px", height: "56px", borderRadius: "16px", background: "rgba(19, 170, 179, 0.1)", color: "var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.8rem" }}>
+                <i className="fas fa-cogs"></i>
               </div>
+              <h4 style={{ fontSize: "1.6rem", color: "var(--color-primary)", margin: 0, fontWeight: "600" }}>What We Deliver</h4>
             </div>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
+              {[
+                "IIoT telemetry ingestion engines",
+                "Computer vision QA integration",
+                "Predictive failure alert pipelines",
+                "Automatic parts reordering loops",
+                "Unified factory floor dashboard",
+                "Downtime bottleneck auditing",
+                "SCADA / ERP data bridges"
+              ].map((item, i) => (
+                <li key={i} style={{ display: "flex", gap: "16px", color: "#395568", fontSize: "1.1rem", lineHeight: "1.6", alignItems: "center" }}>
+                  <span style={{ color: "var(--color-accent)", fontSize: "1.2rem" }}><i className="fas fa-check-circle"></i></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Business Outcomes Column */}
+          <div className="eco-card" style={{ background: "white", padding: "50px", borderRadius: "24px", boxShadow: "0 10px 30px rgba(0,0,0,0.02)", borderTop: "4px solid #8E44AD" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "30px" }}>
+              <div style={{ width: "56px", height: "56px", borderRadius: "16px", background: "rgba(142, 68, 173, 0.1)", color: "#8E44AD", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.8rem" }}>
+                <i className="fas fa-chart-line"></i>
+              </div>
+              <h4 style={{ fontSize: "1.6rem", color: "var(--color-primary)", margin: 0, fontWeight: "600" }}>Business Outcomes</h4>
+            </div>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
+              {[
+                "85% reduction in unplanned downtime",
+                "99.2% computer-vision QA accuracy",
+                "15% improvement in floor throughput",
+                "Unified operations management",
+                "Zero manual telemetry entry delays",
+                "Fully synchronized supply orders"
+              ].map((item, i) => (
+                <li key={i} style={{ display: "flex", gap: "16px", color: "#1a2a35", fontWeight: "600", fontSize: "1.1rem", lineHeight: "1.6", alignItems: "center" }}>
+                  <span style={{ color: "#8E44AD", fontSize: "1.2rem" }}><i className="fas fa-arrow-alt-circle-up"></i></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </section>
 
-      {/* CTA */}
-      <div className="container" style={{ padding: "80px 0" }}>
-          <div className="build-ecosystem" style={{ margin: "0", background: "var(--color-primary)" }}>
-              <h2 style={{ fontSize: "2.4rem", fontWeight: "600", color: "white" }}>Stop reacting to machine failures.</h2>
-              <p style={{ margin: "20px auto 40px", maxWidth: "600px", opacity: "0.85", color: "white" }}>
-                  Schedule a factory automation audit to see exactly where cognitive AI agents can optimize your manufacturing throughput.
-              </p>
-              <Link to="/contact" className="btn-premium" style={{ background: "white", color: "var(--color-primary)" }}>Contact Us →</Link>
+        {/* Operational Focus Areas Grid */}
+        <div style={{ marginBottom: "80px" }}>
+          <div style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto 50px" }}>
+            <h3 style={{ fontSize: "2rem", fontWeight: "700", color: "var(--color-primary)", marginBottom: "16px" }}>Operational Focus Areas</h3>
+            <p style={{ color: "#58798C", fontSize: "1.1rem" }}>Targeted engineering systems designed to coordinate modern smart factory assemblies.</p>
           </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "30px" }}>
+            {[
+              {
+                title: "Predictive Maintenance",
+                desc: "Analyze machine telemetry to predict component failures before they occur, scheduling maintenance automatically.",
+                icon: "fa-tools",
+                color: "#13AAB3"
+              },
+              {
+                title: "Automated Quality Control",
+                desc: "Deploy computer vision models to inspect products on the assembly line with greater accuracy than human QA.",
+                icon: "fa-clipboard-check",
+                color: "#3498db"
+              },
+              {
+                title: "Supply Chain Synchronization",
+                desc: "Automatically adjust production schedules and raw material orders based on real-time stock levels.",
+                icon: "fa-truck-loading",
+                color: "#e67e22"
+              },
+              {
+                title: "IIoT Telemetry Aggregation",
+                desc: "Link physical plant sensors and MES networks directly to centralized enterprise management software.",
+                icon: "fa-network-wired",
+                color: "#2ecc71"
+              }
+            ].map((focus, i) => (
+              <div key={i} className="eco-card" style={{ background: "white", padding: "36px", borderRadius: "16px", border: "1.5px solid #E2EBE7", display: "flex", flexDirection: "column", height: "100%" }}>
+                <div style={{
+                  width: "50px",
+                  height: "50px",
+                  borderRadius: "12px",
+                  background: `rgba(${focus.color === "#13AAB3" ? "19,170,179" : focus.color === "#3498db" ? "52,152,219" : focus.color === "#e67e22" ? "230,126,34" : "46,204,113"}, 0.1)`,
+                  color: focus.color,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "1.3rem",
+                  marginBottom: "24px"
+                }}>
+                  <i className={`fas ${focus.icon}`}></i>
+                </div>
+                <h4 style={{ fontSize: "1.2rem", fontWeight: "700", color: "var(--color-primary)", marginBottom: "12px" }}>{focus.title}</h4>
+                <p style={{ color: "#58798C", fontSize: "0.95rem", lineHeight: "1.6", margin: 0 }}>{focus.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Call to Action Footer */}
+        <section style={{ padding: "80px 0", background: "var(--color-primary)", color: "white", textAlign: "center", borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(14,25,33,0.15)" }}>
+          <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 40px" }}>
+            <h2 style={{ fontSize: "2.5rem", marginBottom: "24px", color: "white" }}>Stop Reacting to Machine Failures</h2>
+            <p style={{ fontSize: "1.2rem", lineHeight: "1.8", opacity: 0.9, marginBottom: "40px" }}>
+              Ready to implement predictive factory systems? Our engineering team will help configure automated coordination pipelines suited to your manufacturing scale.
+            </p>
+            <Link to="/contact" className="btn-premium" style={{ background: "white", color: "var(--color-primary)" }}>
+              Discuss Implementation &rarr;
+            </Link>
+          </div>
+        </section>
       </div>
     </main>
   );

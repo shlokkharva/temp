@@ -180,7 +180,7 @@ export default function Contact() {
                     <div style={{ color: "var(--color-primary)", fontWeight: "600", fontSize: "1.05rem" }}>+91 8629919873</div>
                   </div>
                 </div>
-                
+
                 <div style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
@@ -205,43 +205,13 @@ export default function Contact() {
                     <i className="fas fa-map-marker-alt"></i>
                   </div>
                   <div>
-                    <div style={{ fontSize: "0.75rem", color: "#58798C", textTransform: "uppercase", fontWeight: "700", letterSpacing: "0.5px", marginBottom: "4px" }}>Our Office</div>
-                    <div style={{ color: "var(--color-primary)", fontWeight: "500", lineHeight: "1.5", fontSize: "1rem" }}>
-                      200, Shree Ram Nagar 22,<br/>
-                      Bengali Square, Indore,<br/>
-                      Madhya Pradesh 452001
+                    <div style={{ fontSize: "0.75rem", color: "#58798C", textTransform: "uppercase", fontWeight: "700", letterSpacing: "0.5px", marginBottom: "4px" }}>Our Location</div>
+                    <div style={{ color: "var(--color-primary)", fontWeight: "600", fontSize: "1.05rem" }}>
+                      Indore, Madhya Pradesh-452001, India
                     </div>
                   </div>
                 </div>
-
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '20px', 
-                  background: "#FFFFFF", 
-                  padding: "24px", 
-                  borderRadius: "20px", 
-                  border: "1px solid #E2EBE7",
-                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.02)"
-                }}>
-                  <div style={{ 
-                    width: "52px", 
-                    height: "52px", 
-                    borderRadius: "16px", 
-                    background: "rgba(19, 170, 179, 0.08)", 
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center", 
-                    color: "var(--color-accent)", 
-                    fontSize: "1.3rem" 
-                  }}>
-                    <i className="fas fa-certificate"></i>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: "0.75rem", color: "#58798C", textTransform: "uppercase", fontWeight: "700", letterSpacing: "0.5px", marginBottom: "4px" }}>MSME Registration</div>
-                    <div style={{ color: "var(--color-primary)", fontWeight: "600", fontSize: "1.05rem" }}>UDYAM-MP-23-0257373</div>
-                  </div>
-                </div>
+                
               </div>
             </div>
 
