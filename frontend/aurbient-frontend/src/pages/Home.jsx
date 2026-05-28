@@ -20,10 +20,10 @@ export default function Home() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
-    { img: "/@fs/C:/Users/shlok/.gemini/antigravity/brain/237ae5d4-2088-4c38-86d9-21b74545b555/aurbient_automation_ecosystems_hero_1779956098816.png", title: "Automation Ecosystems" },
-    { img: "/@fs/C:/Users/shlok/.gemini/antigravity/brain/237ae5d4-2088-4c38-86d9-21b74545b555/aurbient_operational_visibility_hero_1779956114480.png", title: "Operational Visibility" },
-    { img: "/@fs/C:/Users/shlok/.gemini/antigravity/brain/237ae5d4-2088-4c38-86d9-21b74545b555/aurbient_cloud_infrastructure_hero_1779956136615.png", title: "Cloud Infrastructure" },
-    { img: "/@fs/C:/Users/shlok/.gemini/antigravity/brain/237ae5d4-2088-4c38-86d9-21b74545b555/aurbient_ai_workflow_systems_hero_1779956161775.png", title: "AI Workflow Systems" }
+    { img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80", title: "Automation Ecosystems" },
+    { img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80", title: "Operational Visibility" },
+    { img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80", title: "Cloud Infrastructure" },
+    { img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=1200&q=80", title: "AI Workflow Systems" }
   ];
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -31,14 +31,14 @@ export default function Home() {
     {
       category: "Manufacturing Operations",
       text: "“Aurbient Technologies helped us improve operational visibility and streamline internal workflow coordination across departments. Their understanding of both technology and business operations brought structure and clarity to our reporting processes.”",
-      img: "/@fs/C:/Users/shlok/.gemini/antigravity/brain/652826b5-ce54-43c3-b7e3-b602da2e01fd/testimonial_1_1779620236313.png",
+      img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
       name: "Operations Management Team",
       company: "Onix Private limited"
     },
     {
       category: "Business Automation & Digital Systems",
       text: "“The team demonstrated a strong understanding of automation workflows and operational efficiency. Their ability to align technology with practical business requirements helped us improve communication flow and management accessibility.”",
-      img: "/@fs/C:/Users/shlok/.gemini/antigravity/brain/652826b5-ce54-43c3-b7e3-b602da2e01fd/testimonial_2_1779620254193.png",
+      img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200&h=200",
       name: "Director",
       company: "Industrial Business Solutions Pvt. Ltd."
     },
@@ -305,7 +305,7 @@ export default function Home() {
             <div style={{ position: "relative" }}>
               <div style={{ position: "absolute", top: "-5%", left: "-5%", width: "110%", height: "110%", background: "radial-gradient(circle, rgba(19,170,179,0.15) 0%, transparent 60%)", filter: "blur(30px)", zIndex: 0 }}></div>
               <img 
-                src="/@fs/C:/Users/shlok/.gemini/antigravity/brain/237ae5d4-2088-4c38-86d9-21b74545b555/aurbient_intelligent_flow_transformation_1779956179312.png" 
+                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" 
                 alt="Intelligent Flow Transformation" 
                 style={{ width: "100%", height: "450px", objectFit: "cover", borderRadius: "24px", boxShadow: "0 20px 45px rgba(14,25,33,0.12)", position: "relative", zIndex: 1 }} 
               />

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function SMEs() {
-  const image = "/@fs/C:/Users/shlok/.gemini/antigravity/brain/237ae5d4-2088-4c38-86d9-21b74545b555/aurbient_ind_smes_1779956680196.png";
+  const image = "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80";
 
   return (
     <main style={{ background: "#F4F9FB", minHeight: "100vh" }}>

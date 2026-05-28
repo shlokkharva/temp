@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Leadership() {
   const images = {
-    hero: "/@fs/C:/Users/shlok/.gemini/antigravity/brain/237ae5d4-2088-4c38-86d9-21b74545b555/aurbient_leadership_1779955103169.png",
+    hero: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80",
   };
 
   return (
